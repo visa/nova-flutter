@@ -1,0 +1,190 @@
+NOTICE
+
+This project contains code from the Flutter which is licensed under the BSD 3-Clause License. The original license terms are as follows:
+
+Copyright 2014 The Flutter Authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The modifications and additions made by Visa Inc are licensed under the Apache License, Version 2.0. The full text of the Apache License is available at:
+
+<http://www.apache.org/licenses/LICENSE-2.0>
+
+// START GENAI
+Significant changes or additions
+
+CheckboxListTile -> VMatCheckboxListTile
+
+- Changed the widget from `StatelessWidget` to `StatefulWidget` to manage state internally.
+- Added new properties: `titleStyle`, `subtitleStyle`, `crossAxisAlignment`, and `child` to provide additional customization options.
+- Removed properties: `mouseCursor`, `hoverColor`, `splashRadius`, `materialTapTargetSize`, `checkboxShape`, `isError`, `checkboxSemanticLabel`, `checkboxScaleFactor`, and `internalAddSemanticForOnTap` to simplify the widget's interface.
+- Implemented dynamic height management for the checkbox using `_checkboxHeight` and `GlobalKey`.
+- Enhanced the `onChanged` callback to handle null values and manage checkbox state transitions.
+- Customized the `build` method to:
+  - Use `VMatCheckbox` instead of `Checkbox`.
+  - Handle different `controlAffinity` cases (leading, trailing, platform).
+  - Adjust widget alignment based on the `crossAxisAlignment` property.
+  - Customize the appearance and behavior of the `ListTile`, including padding, merging semantics, and handling tap interactions.
+  - Apply `Theme` modifications for `splashColor` and `highlightColor`.
+
+These changes provide additional functionality, customization options, and improved state management for the `CheckboxListTile` widget.
+
+Checkbox -> VMatCheckbox
+
+- Changed the widget from `StatelessWidget` to `StatefulWidget` to manage state internally.
+- Added new properties: `titleStyle`, `subtitleStyle`, `crossAxisAlignment`, and `child` to provide additional customization options.
+- Removed properties: `isError`, `semanticLabel`.
+- Implemented dynamic height management for the checkbox using `_checkboxHeight` and `GlobalKey`.
+- Enhanced the `onChanged` callback to handle null values and manage checkbox state transitions.
+- Customized the `build` method to:
+  - Use `VMatCheckbox` instead of `Checkbox`.
+  - Handle different `controlAffinity` cases (leading, trailing, platform).
+  - Adjust widget alignment based on the `crossAxisAlignment` property.
+  - Customize the appearance and behavior of the `Checkbox`, including padding, merging semantics, and handling tap interactions.
+  - Apply `Theme` modifications for `splashColor` and `highlightColor`.
+- Custom painter `_CheckboxPainter` to manage checkbox rendering and animations, tailored for `VMatCheckbox`.
+
+These changes provide additional functionality, customization options, and improved state management for the `Checkbox` widget.
+
+RawChip -> VRawChip
+
+- Changed the widget from `StatelessWidget` to `StatefulWidget` to manage state internally.
+- Added new properties: `defaultProperties`, `tapEnabled`, `useDeleteButtonTooltip`.
+- Modified constructor to simplify and customize the widget's interface.
+- Enhanced state management with additional animation controllers: `selectController`, `avatarDrawerController`, `deleteDrawerController`, `enableController`.
+- Customized `_handleTapDown`, `_handleTapCancel`, and `_handleTap` methods to handle tap interactions and state changes.
+- Modified `build` method to:
+  - Use `VRawChip` instead of `RawChip`.
+  - Customize the appearance and behavior of the chip, including padding, merging semantics, and handling tap interactions.
+  - Apply theme modifications for `splashColor` and `highlightColor`.
+- Custom painter `_ChipRenderWidget` to manage chip rendering and animations, tailored for `VRawChip`.
+
+These changes provide additional functionality, customization options, and improved state management for the `Chip` widget.
+
+CircularProgressIndicator -> VCircularProgressIndicator
+
+- Modified the widget's state management to use a longer animation duration.
+- Removed the `strokeAlign` property to simplify the widget's interface.
+- Customized `_handleTapDown`, `_handleTapCancel`, and `_handleTap` methods to handle tap interactions and state changes.
+- Modified `build` method to:
+  - Use `VCircularProgressIndicator` instead of `CircularProgressIndicator`.
+  - Customize the appearance and behavior of the circular progress indicator.
+- Custom painter `_VCircularProgressIndicatorPainter` to manage circular progress indicator rendering and animations, tailored for `VCircularProgressIndicator`.
+
+These changes provide additional functionality, customization options, and improved state management for the `CircularProgressIndicator` widget.
+
+RadioListTile -> VMatRadioListTile
+
+- Changed the control widget from `Radio<T>` to `VMatRadio<T>`.
+- Removed properties: `mouseCursor`, `hoverColor`, `splashRadius`, `materialTapTargetSize`, `onFocusChange`, `internalAddSemanticForOnTap`, `useCupertinoCheckmarkStyle` to simplify the widget's interface.
+- Added new property: `key`.
+- Modified `build` method to:
+  - Use `VMatRadio<T>` instead of `Radio<T>`.
+  - Customize the theme data for splash color and highlight color, making them transparent.
+  - Wrap its child widget in a `MergeSemantics` widget to merge its semantic nodes.
+  - Use `ListTileTheme.merge` to merge the list tile theme data.
+
+These changes provide additional functionality, customization options, and improved state management for the `RadioListTile` widget.
+
+Radio -> VMatRadio
+
+- Changed the widget's constructor to remove the adaptive case.
+- Removed the `useCupertinoCheckmarkStyle` property to simplify the widget's interface.
+- Added new property: `key`.
+- Modified `build` method to:
+  - Handle only the material design case.
+  - Customize the appearance and behavior of the radio button.
+- Custom painter `_RadioPainter` to manage radio button rendering and animations, tailored for `VMatRadio`.
+
+These changes provide additional functionality, customization options, and improved state management for the `Radio` widget.
+
+SnackBar -> VSnackBar
+
+- Added a new property `snackBarState` to handle different states of the snackbar (informational, warning, error, success).
+- Modified the `build` method to include custom logic for handling different `snackBarState` values and applying corresponding highlight colors.
+- Introduced a custom method `getSnackBarHighlight` to determine the highlight color based on the `snackBarState`.
+- Added additional logic for handling the padding, shape, and other visual aspects of the snackbar based on the `snackBarState`.
+
+These changes provide additional functionality, customization options, and improved state management for the `SnackBar` widget.
+
+Tab -> VMatTab
+TabBar -> VMatTabBar
+TabBarView -> VMatTabBarView
+TabPageSelector -> VMatTabPageSelector
+TabPageSelectorIndicator -> VMatTabPageSelectorIndicator
+
+- Added custom classes `VMatTab`, `VMatTabBar`, `VMatTabBarView`, `VMatTabPageSelector`, and `VMatTabPageSelectorIndicator` with enhanced functionalities.
+- Introduced new properties and methods for better state management, animations, and UI customizations.
+- Enhanced scroll behavior and added support for different tab states (selected, unselected) with improved styling options.
+- Included default theme data classes for custom tab bar styles.
+
+These changes provide additional functionality, customization options, and improved state management for the `Tab` and related widgets.
+
+// END GENAI
+
+{
+    "args 2.4.2": {
+        "licenses": "BSD-3-Clause",
+        "repository": "<https://github.com/dart-lang/core/tree/main/pkgs/args>",
+        "publisher": "dart.dev",
+        "licenseFile": "<https://pub.dev/packages/args/license>"
+    },
+    "flutter": {
+        "licenses": "BSD-3-Clause",
+        "repository": "<https://github.com/flutter/flutter>",
+        "publisher": "flutter.dev",
+        "licenseFile": "<https://github.com/flutter/flutter/blob/master/LICENSE>"
+    },
+    "flutter_svg 2.0.9": {
+        "licenses": "MIT",
+        "repository": "<https://github.com/flutter/packages/tree/main/third_party/packages/flutter_svg>",
+        "publisher": "flutter.dev",
+        "licenseFile": "<https://pub.dev/packages/flutter_svg/license>"
+    },
+    "grinder 0.9.5": {
+        "licenses": "BSD-3-Clause",
+        "repository": "<https://github.com/google/grinder.dart>",
+        "publisher": "unverified uploader",
+        "licenseFile": "<https://pub.dev/packages/grinder/license>"
+    },
+    "path 1.9.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "<https://github.com/dart-lang/core/tree/main/pkgs/path>",
+        "publisher": "dart.dev",
+        "licenseFile": "<https://pub.dev/packages/path/license>"
+    },
+    "string_scanner": {
+        "licenses": "BSD-3-Clause",
+        "repository": "<https://github.com/dart-lang/tools/tree/main/pkgs/string_scanner>",
+        "publisher": "tools.dart.dev",
+        "licenseFile": "<https://pub.dev/packages/string_scanner/license>"
+    },
+    "visa_nova_icons_flutter 4.0.0": {
+        "licenses": "Apache-2.0",
+        "repository": "ssh://git@stash.trusted.visa.com:7999/vc/nova-flutter",
+        "publisher": "Visa Inc",
+        "licenseFile": "LICENSE"
+    }
+}

@@ -1,0 +1,105 @@
+# © 2025 Visa.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and
+# limitations under the License.
+#
+name: visa_nova_flutter
+description: Visa Nova Flutter Component Library.
+version: 8.1.0
+homepage: https://stash.trusted.visa.com:7990/projects/VC/repos/nova-flutter/browse
+
+publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  args: ^2.3.1
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.4
+  grinder: ^0.9.2
+  # url_launcher: ^6.1.10
+  path: ^1.8.0
+  visa_nova_icons_flutter:
+    version: ^4.0.0
+    hosted:
+      name: visa_nova_icons_flutter
+      url: https://artifactory.trusted.visa.com/api/pub/visa-commons-flutter
+  string_scanner: ^1.2.0
+
+  # visa_nova_icons_flutter:
+  #   path: nova_icons_flutter/
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  fonts:
+    - family: VisaDialectUI
+      fonts:
+        - asset: lib/fonts/VisaDialectUI-Bold.ttf
+          weight: 700
+        - asset: lib/fonts/VisaDialectUI-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: lib/fonts/VisaDialectUI-SemiBold.ttf
+          weight: 600
+        - asset: lib/fonts/VisaDialectUI-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: lib/fonts/VisaDialectUI-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/VisaDialectUI-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: lib/fonts/VisaDialectUI-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/VisaDialectUI-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: lib/fonts/VisaDialectUI-Light.ttf
+          weight: 300
+        - asset: lib/fonts/VisaDialectUI-LightItalic.ttf
+          weight: 300
+          style: italic
+
+  # To add assets to your package, add an assets section, like this:
+  assets:
+    - test/assets/
+  #
+  # For details regarding assets in packages, see
+  # https://flutter.dev/assets-and-images/#from-packages
+  #
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # To add custom fonts to your package, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts in packages, see
+  # https://flutter.dev/custom-fonts/#from-packages
