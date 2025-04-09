@@ -1,0 +1,14 @@
+{
+  "flutter": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/flutter/flutter",
+    "publisher": "flutter.dev",
+    "licenseFile": "https://github.com/flutter/flutter/blob/master/LICENSE"
+  },
+  "xml 6.5.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/renggli/dart-xml",
+    "publisher": "lukas-renggli.ch",
+    "licenseFile": "https://pub.dev/packages/xml/license"
+  }
+}

@@ -1,0 +1,36 @@
+#
+#              © 2025 Visa
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+name: visa_nova_icons_flutter
+description: "VPDS Nova Flutter icon library. This repository contains VPDS Flutter icon library in string format. Icons are visual representations of core ideas, functions, or content. The Visa Product Design System currently supports two sets of icons: Visa-branded and generic for all other uses."
+version: 4.0.2
+homepage: https://productdesignsystem.visa.com/icons
+
+# publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter
+
+environment:
+  sdk: ">=2.18.6 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  xml: ^6.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
