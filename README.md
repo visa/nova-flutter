@@ -1,12 +1,19 @@
 <!--
- * © 2025 Visa.
+ *
+ *              © 2025 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  *
  -->
 
@@ -57,8 +64,8 @@ To add the dependency maually to your project, import it in pubspec.yaml under _
 
 ```yaml
 dependencies:
-  visa_nova_flutter: ^8.1.0
-  visa_nova_icons_flutter: ^4.0.0
+  visa_nova_flutter: ^8.1.1
+  visa_nova_icons_flutter: ^4.0.2
 ```
 
 ### Dependencies
@@ -110,7 +117,7 @@ class MyVisaIconWidget extends StatelessWidget {
 
 ### Use the components
 
-After adding Nova icons, you’re ready to use Flutter components by copying and pasting the example code into your application. Check out [Button](https://productdesignsystem.visa.com/version/development-public/components/button?code_library=flutter&version=8.1.0) to give it a try.
+After adding Nova icons, you’re ready to use Flutter components by copying and pasting the example code into your application. Check out [Button](https://productdesignsystem.visa.com/components/button?code_library=flutter&version=8.1.1) to give it a try.
 
 ## <a name="why-nova-flutter"></a>Why Nova Flutter?
 

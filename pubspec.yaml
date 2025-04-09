@@ -1,18 +1,25 @@
-# © 2025 Visa.
+#
+#              © 2025 Visa
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
 # limitations under the License.
 #
+#
 name: visa_nova_flutter
-description: Visa Nova Flutter Component Library.
-version: 8.1.0
-homepage: https://stash.trusted.visa.com:7990/projects/VC/repos/nova-flutter/browse
+description: Visa Nova Flutter Component Library. Nova Flutter is a comprehensive library of accessible components designed to align with the Visa Product Design System. It provides developers with a set of reusable UI elements that can be easily integrated into Flutter applications. With Nova Flutter, developers can quickly build visually consistent and user-friendly interfaces that adhere to accessibility best practices.
+version: 8.1.1
+homepage: https://productdesignsystem.visa.com/developing/flutter
 
-publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter
+# publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -26,12 +33,8 @@ dependencies:
   grinder: ^0.9.2
   # url_launcher: ^6.1.10
   path: ^1.8.0
-  visa_nova_icons_flutter:
-    version: ^4.0.0
-    hosted:
-      name: visa_nova_icons_flutter
-      url: https://artifactory.trusted.visa.com/api/pub/visa-commons-flutter
   string_scanner: ^1.2.0
+  visa_nova_icons_flutter: ^4.0.2
 
   # visa_nova_icons_flutter:
   #   path: nova_icons_flutter/
@@ -75,8 +78,8 @@ flutter:
           style: italic
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - test/assets/
+  # assets:
+  #  - test/assets/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
