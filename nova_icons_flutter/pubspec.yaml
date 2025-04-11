@@ -15,8 +15,8 @@
 #
 #
 name: visa_nova_icons_flutter
-description: "VPDS Nova Flutter icon library. This repository contains VPDS Flutter icon library in string format. Icons are visual representations of core ideas, functions, or content. The Visa Product Design System currently supports two sets of icons: Visa-branded and generic for all other uses."
-version: 4.0.2
+description: VPDS Nova Flutter icon library contains string-based icons for Flutter. Icons represent ideas, functions, or content. Supports Visa-branded and generic icons for various uses.
+version: 4.0.3
 homepage: https://productdesignsystem.visa.com/icons
 
 # publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter

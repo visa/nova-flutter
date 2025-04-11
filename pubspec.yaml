@@ -15,8 +15,8 @@
 #
 #
 name: visa_nova_flutter
-description: Visa Nova Flutter Component Library. Nova Flutter is a comprehensive library of accessible components designed to align with the Visa Product Design System. It provides developers with a set of reusable UI elements that can be easily integrated into Flutter applications. With Nova Flutter, developers can quickly build visually consistent and user-friendly interfaces that adhere to accessibility best practices.
-version: 8.1.1
+description: Nova Flutter is a library of accessible components for the Visa Product Design System. It helps developers create consistent, user-friendly, and accessible Flutter app interfaces.
+version: 8.1.2
 homepage: https://productdesignsystem.visa.com/developing/flutter
 
 # publish_to: https://artifactory.trusted.visa.com:443/api/pub/visa-commons-flutter
@@ -34,7 +34,7 @@ dependencies:
   # url_launcher: ^6.1.10
   path: ^1.8.0
   string_scanner: ^1.2.0
-  visa_nova_icons_flutter: ^4.0.2
+  visa_nova_icons_flutter: ^4.0.3
 
   # visa_nova_icons_flutter:
   #   path: nova_icons_flutter/

@@ -19,15 +19,21 @@
 
 # Changelog
 
+## 8.1.2 (2025-04-10)
+
+### Feature 8.1.2
+
+- Updated license in all files and pubspec.yaml
+
 ## 8.1.1 (2025-03-26)
 
-### Feature
+### Feature 8.1.1
 
 - Updated pubspec.yaml
 
 ## 8.1.0 (2025-02-12)
 
-### Added
+### Added 8.1.0
 
 - Initial release of the component library.
 - Added a collection of components.

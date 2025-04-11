@@ -19,9 +19,15 @@
 
 # Changelog
 
+## 4.0.3 (2025-04-10)
+
+### Feature 4.0.3
+
+- Updated license in all files and pubspec.yaml
+
 ## 4.0.2 (2025-03-26)
 
-### Features
+### Feature 4.0.2
 
 - Updated pubspec.yaml
 

@@ -32,7 +32,7 @@
 
 ## <a name="about"></a>Nova Flutter
 
-> Accessible Visa Product Design System components built for Flutter 
+> Accessible Visa Product Design System components built for Flutter
 
 Nova Flutter is a comprehensive library of accessible components designed to align with the Visa Product Design System. It provides developers with a set of reusable UI elements that can be easily integrated into Flutter applications. With Nova Flutter, developers can quickly build visually consistent and user-friendly interfaces that adhere to accessibility best practices.
 
@@ -41,7 +41,7 @@ Nova Flutter is a comprehensive library of accessible components designed to ali
 - **Wide range of components**: Includes buttons, content cards, navigation drawer, and more.
 - **Customizable**: Built on Flutter Material and ThemeExtension, allowing for extensive theming and customization.
 - **Accessibility**: Adheres to accessibility best practices to ensure inclusive user experiences.
-- **Flexible state management**: Supports bring-your-own state, enabling custom services and classes. 
+- **Flexible state management**: Supports bring-your-own state, enabling custom services and classes.
 
 Whether you are building a small project or a large-scale application, Nova Flutter offers a robust foundation for creating visually appealing and accessible user interfaces.
 
