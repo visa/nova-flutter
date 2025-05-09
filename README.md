@@ -60,11 +60,11 @@ flutter pub add visa_nova_flutter
 flutter pub add visa_nova_icons_flutter
 ```
 
-To add the dependency maually to your project, import it in pubspec.yaml under _dependencies_ like this:
+To add the dependency manually to your project, import it in pubspec.yaml under _dependencies_ like this:
 
 ```yaml
 dependencies:
-  visa_nova_flutter: ^8.1.1
+  visa_nova_flutter: ^8.1.2
   visa_nova_icons_flutter: ^4.0.2
 ```
 
