@@ -40,4 +40,4 @@ VIcon(
 
 ## Additional information
 
-If you want to learn about VPDS, please visit our site: <https://productdesignsystem.visa.com/>
+If you want to learn about VPDS, please visit our site: <https://design.visa.com/>

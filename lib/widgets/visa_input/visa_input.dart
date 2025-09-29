@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -377,6 +377,7 @@ class VInput extends StatefulWidget {
     this.semanticsError = "Error",
     this.flexHeight = false,
     this.onTapOutside,
+    this.enableInteractiveSelection,
   }) : super(key: key);
 
   // BEGIN Properties
@@ -431,6 +432,7 @@ class VInput extends StatefulWidget {
   final String? semanticsError;
   final bool? flexHeight;
   final void Function(PointerDownEvent)? onTapOutside;
+  final bool? enableInteractiveSelection;
 
   // END
   @override
@@ -888,6 +890,8 @@ class _VInputState extends State<VInput> {
                                                 ? MaxLengthEnforcement.enforced
                                                 : MaxLengthEnforcement.none,
                                             onTapOutside: widget.onTapOutside,
+                                            enableInteractiveSelection: widget
+                                                .enableInteractiveSelection,
                                           ),
                                         ),
                                       ),
@@ -1152,6 +1156,8 @@ class _VInputState extends State<VInput> {
                                 maxLengthEnforcement: widget.maxLengthEnforced
                                     ? MaxLengthEnforcement.enforced
                                     : MaxLengthEnforcement.none,
+                                enableInteractiveSelection:
+                                    widget.enableInteractiveSelection,
                               ),
                             ),
                           ),

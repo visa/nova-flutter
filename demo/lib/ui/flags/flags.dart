@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +38,7 @@ class _FlagsState extends State<Flags> {
     final GlobalKey<ScaffoldState> _key = GlobalKey();
     setPageTitle('Flags', context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(

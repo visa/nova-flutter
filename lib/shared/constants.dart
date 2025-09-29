@@ -22,7 +22,7 @@ const iconPath = "packages/visa_nova_flutter/assets/icons/";
 const checkboxError =
     "This is required text that describes the error in more detail.";
 const checkboxLabel = "Label";
-const versionNumber = "8.1.2";
+const versionNumber = "8.2.0";
 const close = "close";
 const visaDialectFont = "VisaDialectUI";
 

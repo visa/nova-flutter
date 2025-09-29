@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,8 @@ class VPanelStyle extends ThemeExtension<VPanelStyle> {
   }) =>
       VPanelStyle(
           backgroundColor: backgroundColor ?? this.backgroundColor,
-          appBarBackgroundColor: appBarBackgroundColor ?? this.appBarBackgroundColor,
+          appBarBackgroundColor:
+              appBarBackgroundColor ?? this.appBarBackgroundColor,
           titleTextStyle: titleTextStyle ?? this.titleTextStyle,
           borderRadius: borderRadius ?? this.borderRadius);
 
@@ -57,7 +58,8 @@ class VPanelStyle extends ThemeExtension<VPanelStyle> {
 
     return VPanelStyle(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t),
-      appBarBackgroundColor: Color.lerp(appBarBackgroundColor, other.appBarBackgroundColor, t),
+      appBarBackgroundColor:
+          Color.lerp(appBarBackgroundColor, other.appBarBackgroundColor, t),
       titleTextStyle: titleTextStyle ?? other.titleTextStyle,
       borderRadius: lerpDouble(borderRadius, other.borderRadius, t),
     );
@@ -121,16 +123,26 @@ class _VPanelState extends State<VPanel> {
   Widget build(BuildContext context) {
     final dynamic defaultStyle;
     if (widget.vExt == null || widget.vExt is VDef) {
-      defaultStyle =
-          Theme.of(context).brightness == Brightness.dark ? getDefaultColorSchemeDark()! : getDefaultColorScheme()!;
+      defaultStyle = Theme.of(context).brightness == Brightness.dark
+          ? getDefaultColorSchemeDark()!
+          : getDefaultColorScheme()!;
     } else {
-      defaultStyle = Theme.of(context).brightness == Brightness.dark ? getAltColorSchemeDark()! : getAltColorScheme()!;
+      defaultStyle = Theme.of(context).brightness == Brightness.dark
+          ? getAltColorSchemeDark()!
+          : getAltColorScheme()!;
     }
-    final backgroundColor = widget.style?.backgroundColor ?? defaultStyle.surface1;
-    final appBarBackgroundColor = widget.style?.appBarBackgroundColor ?? defaultStyle.surface1;
-    final titleTextStyle = widget.style?.titleTextStyle ?? defaultStyle.vPanelProperties?.titleTextStyle;
-    final borderRadius = widget.style?.borderRadius ?? defaultStyle.vPanelProperties?.borderRadius;
-    EdgeInsets? closeIconPadding = widget.closeIconPadding ?? (widget.isFullScreen! ? const EdgeInsets.fromLTRB(14, 16, 14, 12) : const EdgeInsets.all(14));
+    final backgroundColor =
+        widget.style?.backgroundColor ?? defaultStyle.surface1;
+    final appBarBackgroundColor =
+        widget.style?.appBarBackgroundColor ?? defaultStyle.surface1;
+    final titleTextStyle = widget.style?.titleTextStyle ??
+        defaultStyle.vPanelProperties?.titleTextStyle;
+    final borderRadius = widget.style?.borderRadius ??
+        defaultStyle.vPanelProperties?.borderRadius;
+    EdgeInsets? closeIconPadding = widget.closeIconPadding ??
+        (widget.isFullScreen!
+            ? const EdgeInsets.fromLTRB(16, 18, 16, 14)
+            : const EdgeInsets.all(16));
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
@@ -175,8 +187,8 @@ class _VPanelState extends State<VPanel> {
                           splashColor: VColors.defaultSurfaceLowlight,
                           onTap: () => Navigator.pop(context),
                           child: Container(
-                            width: 44,
-                            height: 44,
+                            width: 48,
+                            height: 48,
                             padding: closeIconPadding,
                             child: const ExcludeSemantics(
                               child: VIcon(
@@ -199,7 +211,9 @@ class _VPanelState extends State<VPanel> {
                 child: Container(
                   width: double.infinity,
                   color: backgroundColor,
-                  padding: widget.contentPadding ?? EdgeInsets.fromLTRB(24, widget.isFullScreen! ? 0 : 24, 24, 48),
+                  padding: widget.contentPadding ??
+                      EdgeInsets.fromLTRB(
+                          24, widget.isFullScreen! ? 0 : 24, 24, 48),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -226,11 +240,12 @@ class _VPanelState extends State<VPanel> {
                                     button: true,
                                     child: InkWell(
                                       customBorder: const CircleBorder(),
-                                      splashColor: VColors.defaultSurfaceLowlight,
+                                      splashColor:
+                                          VColors.defaultSurfaceLowlight,
                                       onTap: () => Navigator.pop(context),
                                       child: Container(
-                                        width: 44,
-                                        height: 44,
+                                        width: 48,
+                                        height: 48,
                                         padding: closeIconPadding,
                                         child: const ExcludeSemantics(
                                           child: VIcon(

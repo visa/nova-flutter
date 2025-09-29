@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ class BadgePage extends StatelessWidget {
     final GlobalKey<ScaffoldState> _key = GlobalKey();
     setPageTitle('Badge', context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(

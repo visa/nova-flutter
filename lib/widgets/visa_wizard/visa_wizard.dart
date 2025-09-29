@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -87,6 +87,7 @@ class VWizardStyle extends ThemeExtension<VWizardStyle> {
 
 class VWizard extends StatelessWidget {
   final int currentStep;
+  final List<bool> completedSteps;
   final VoidCallback? onNext;
   final VoidCallback? onPrevious;
   final VoidCallback? onDismiss;
@@ -95,11 +96,11 @@ class VWizard extends StatelessWidget {
   final VExt? vExt;
   final bool hasError;
   final Widget? errorIcon;
-  final Widget child;
 
   const VWizard({
     super.key,
     required this.currentStep,
+    required this.completedSteps,
     this.onNext,
     this.onPrevious,
     this.onDismiss,
@@ -108,7 +109,6 @@ class VWizard extends StatelessWidget {
     this.vExt,
     this.errorIcon,
     this.hasError = false,
-    required this.child,
   });
 
   @override
@@ -129,7 +129,7 @@ class VWizard extends StatelessWidget {
     final errorIconColor = style?.errorIconColor ?? defaultStyle.surface1;
 
     final errorIconBgColor = style?.errorIconColor ?? messageStyle.negativeText;
-    final incompleteColor = style?.incompleteColor ?? defaultStyle.activeSubtle;
+    final incompleteColor = style?.incompleteColor ?? defaultStyle.textSubtle;
     final numberTextStyle = style?.numberTextStyle ??
         defaultStyle.vWizardProperties.numberTextStyle;
     final borderRadius =
@@ -143,102 +143,115 @@ class VWizard extends StatelessWidget {
             children: List.generate(totalSteps * 2 - 1, (index) {
               if (index % 2 == 0) {
                 // This is a step
-                int stepNumber = index ~/ 2 + 1;
-                bool isCompleted = stepNumber < currentStep;
-                bool isInProgress = stepNumber == currentStep;
+                int stepIndex = index ~/ 2;
+                bool isCompleted = completedSteps[stepIndex];
+                bool isInProgress = stepIndex == currentStep - 1;
+
+                Color? backgroundColor = defaultBackgroundColor;
+                Color? borderColor = incompleteColor;
+                Widget? childIcon;
+
+                if (hasError && isInProgress) {
+                  backgroundColor = errorIconBgColor;
+                  borderColor = errorIconBgColor;
+                  childIcon = Semantics(
+                    label: "Error, step ${stepIndex + 1} of $totalSteps",
+                    child: VIcon(
+                      svgIcon: VIcons.errorAltTiny,
+                      iconHeight: 10,
+                      iconWidth: 10,
+                      iconColor: errorIconColor,
+                    ),
+                  );
+                } else if (isCompleted && isInProgress) {
+                  // Current step, completed: green bg, white checkmark
+                  backgroundColor = successColor;
+                  borderColor = successColor;
+                  childIcon = Semantics(
+                    label:
+                        "Current step, completed, step ${stepIndex + 1} of $totalSteps",
+                    child: const VIcon(
+                      svgIcon: VIcons.checkmarkTiny,
+                      iconHeight: 10,
+                      iconWidth: 10,
+                      iconColor: Colors.white,
+                    ),
+                  );
+                } else if (isCompleted) {
+                  // Completed, not current: white bg, green checkmark
+                  backgroundColor = Colors.white;
+                  borderColor = successColor;
+                  childIcon = Semantics(
+                    label: "Completed, step ${stepIndex + 1} of $totalSteps",
+                    child: VIcon(
+                      svgIcon: VIcons.checkmarkTiny,
+                      iconHeight: 10,
+                      iconWidth: 10,
+                      iconColor: successColor,
+                    ),
+                  );
+                } else if (isInProgress) {
+                  // In progress, not completed: green bg, white number
+                  backgroundColor = inProgressColor;
+                  borderColor = inProgressColor;
+                  childIcon = Semantics(
+                    label:
+                        "Current step, incompleted, step ${stepIndex + 1} of $totalSteps",
+                    child: ExcludeSemantics(
+                      child: Text(
+                        '${stepIndex + 1}',
+                        style: numberTextStyle.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  );
+                } else {
+                  // Not completed, not current: default bg, gray number
+                  backgroundColor = defaultBackgroundColor;
+                  borderColor = incompleteColor;
+                  childIcon = Semantics(
+                    label:
+                        "Incomplete step, step ${stepIndex + 1} of $totalSteps",
+                    child: ExcludeSemantics(
+                      child: Text(
+                        '${stepIndex + 1}',
+                        style: defaultVTheme.textStyles.uiLabelActive.copyWith(
+                          color: incompleteColor,
+                          fontWeight: VFontWeight.medium,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+
                 return Container(
                   decoration: BoxDecoration(
-                    color: hasError && isInProgress
-                        ? errorIconBgColor
-                        : isInProgress
-                            ? inProgressColor
-                            : defaultBackgroundColor,
+                    color: backgroundColor,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: isCompleted
-                          ? successColor
-                          : (hasError && isInProgress
-                              ? errorIconBgColor
-                              : isInProgress
-                                  ? inProgressColor
-                                  : incompleteColor),
-                      width: 2.0,
+                      color: borderColor!,
+                      width: 1.0,
                     ),
                   ),
                   width: borderRadius,
                   height: borderRadius,
                   child: Center(
-                    child: isCompleted
-                        ? Semantics(
-                            label: "Completed, step $stepNumber of $totalSteps",
-                            child: VIcon(
-                              svgIcon: VIcons.checkmarkTiny,
-                              iconHeight: 10,
-                              iconWidth: 10,
-                              iconColor: successColor,
-                            ),
-                          )
-                        : (isInProgress
-                            ? Transform.translate(
-                                offset: const Offset(0, -1),
-                                child: hasError
-                                    ? Semantics(
-                                        label:
-                                            "Error, step $currentStep of $totalSteps",
-                                        child: VIcon(
-                                          svgIcon: VIcons.errorAltTiny,
-                                          iconHeight: 10,
-                                          iconWidth: 10,
-                                          iconColor: errorIconColor,
-                                        ),
-                                      )
-                                    : Semantics(
-                                        label:
-                                            "Current step, step $currentStep of $totalSteps",
-                                        child: Center(
-                                          child: ExcludeSemantics(
-                                            child: Text(
-                                              '$stepNumber',
-                                              style: numberTextStyle,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                              )
-                            : Transform.translate(
-                                offset: const Offset(0, -1),
-                                child: Semantics(
-                                  label:
-                                      "Incomplete step, step $stepNumber of $totalSteps",
-                                  child: ExcludeSemantics(
-                                    child: Text(
-                                      '$stepNumber',
-                                      style: defaultVTheme
-                                          .textStyles.uiLabelSmall
-                                          .copyWith(
-                                        color: incompleteColor,
-                                        fontSize: 12,
-                                        fontWeight: VFontWeight.medium,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )),
+                    child: childIcon,
                   ),
                 );
               } else {
                 // This is a line
-                bool isCompleted = index ~/ 2 + 1 < currentStep;
+                int leftStep = index ~/ 2;
+                bool isCompleted = completedSteps[leftStep];
                 return Container(
                   width: 38.0,
                   height: 2.0,
-                  color: isCompleted ? successColor : incompleteColor,
+                  color:
+                      isCompleted ? successColor : VColors.defaultActiveSubtle,
                 );
               }
             }),
           ),
         ),
-        child
       ],
     );
   }

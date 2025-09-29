@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -80,7 +80,10 @@ class VAccordionStyle extends ThemeExtension<VAccordionStyle> {
       bottomDefaultCardColor,
       leadingIconColor;
   final double? subtleBorderRadius, headerBorderRadius, borderRadius;
-  final TextStyle? headerBoldTextStyleBold, headerTextStyleSubtle, headerTextStyle, bodyTextStyle;
+  final TextStyle? headerBoldTextStyleBold,
+      headerTextStyleSubtle,
+      headerTextStyle,
+      bodyTextStyle;
 
   @override
   VAccordionStyle copyWith({
@@ -118,12 +121,16 @@ class VAccordionStyle extends ThemeExtension<VAccordionStyle> {
     bodyTextStyle,
   }) =>
       VAccordionStyle(
-        headerTextColorDefault: headerTextColorDefault ?? this.headerTextColorDefault,
+        headerTextColorDefault:
+            headerTextColorDefault ?? this.headerTextColorDefault,
         headerOpenColor: headerOpenColor ?? this.headerOpenColor,
         headerClosedColor: headerClosedColor ?? this.headerClosedColor,
-        headerTextPressedDownColor: headerTextPressedDownColor ?? this.headerTextPressedDownColor,
-        headerBackgroundSplash: headerBackgroundSplash ?? this.headerBackgroundSplash,
-        boldHeaderContainerColor: boldHeaderContainerColor ?? this.boldHeaderContainerColor,
+        headerTextPressedDownColor:
+            headerTextPressedDownColor ?? this.headerTextPressedDownColor,
+        headerBackgroundSplash:
+            headerBackgroundSplash ?? this.headerBackgroundSplash,
+        boldHeaderContainerColor:
+            boldHeaderContainerColor ?? this.boldHeaderContainerColor,
         borderColor: borderColor ?? this.borderColor,
         iconColorDefault: iconColorDefault ?? this.iconColorDefault,
         iconColorDown: iconColorDown ?? this.iconColorDown,
@@ -132,17 +139,23 @@ class VAccordionStyle extends ThemeExtension<VAccordionStyle> {
         disabledTextColor: disabledTextColor ?? this.disabledTextColor,
         borderDisabledColor: borderDisabledColor ?? this.borderDisabledColor,
         borderSubtleColor: borderSubtleColor ?? this.borderSubtleColor,
-        subtleHeaderContainerColor: subtleHeaderContainerColor ?? this.subtleHeaderContainerColor,
+        subtleHeaderContainerColor:
+            subtleHeaderContainerColor ?? this.subtleHeaderContainerColor,
         bodySubtleColor: bodySubtleColor ?? this.bodySubtleColor,
         inkWellSplashColor: inkWellSplashColor ?? this.inkWellSplashColor,
-        subtleHeaderBackgroundSplash: subtleHeaderBackgroundSplash ?? this.subtleHeaderBackgroundSplash,
+        subtleHeaderBackgroundSplash:
+            subtleHeaderBackgroundSplash ?? this.subtleHeaderBackgroundSplash,
         subtleDividerColor: subtleDividerColor ?? this.subtleDividerColor,
         dividerDefaultColor: dividerDefaultColor ?? this.dividerDefaultColor,
-        subtleBottomCardColor: subtleBottomCardColor ?? this.subtleBottomCardColor,
-        bottomDefaultCardColor: bottomDefaultCardColor ?? this.bottomDefaultCardColor,
+        subtleBottomCardColor:
+            subtleBottomCardColor ?? this.subtleBottomCardColor,
+        bottomDefaultCardColor:
+            bottomDefaultCardColor ?? this.bottomDefaultCardColor,
         leadingIconColor: leadingIconColor ?? this.leadingIconColor,
-        headerBoldTextStyleBold: headerBoldTextStyleBold ?? this.headerBoldTextStyleBold,
-        headerTextStyleSubtle: headerTextStyleSubtle ?? this.headerTextStyleSubtle,
+        headerBoldTextStyleBold:
+            headerBoldTextStyleBold ?? this.headerBoldTextStyleBold,
+        headerTextStyleSubtle:
+            headerTextStyleSubtle ?? this.headerTextStyleSubtle,
         headerTextStyle: headerTextStyle ?? this.headerTextStyle,
         bodyTextStyle: bodyTextStyle ?? this.bodyTextStyle,
         subtleBorderRadius: subtleBorderRadius ?? this.subtleBorderRadius,
@@ -157,34 +170,51 @@ class VAccordionStyle extends ThemeExtension<VAccordionStyle> {
     }
 
     return VAccordionStyle(
-      headerTextColorDefault: Color.lerp(headerTextColorDefault, other.headerTextColorDefault, t),
+      headerTextColorDefault:
+          Color.lerp(headerTextColorDefault, other.headerTextColorDefault, t),
       headerOpenColor: Color.lerp(headerOpenColor, other.headerOpenColor, t),
-      headerClosedColor: Color.lerp(headerClosedColor, other.headerClosedColor, t),
-      headerTextPressedDownColor: Color.lerp(headerTextPressedDownColor, other.headerTextPressedDownColor, t),
-      headerBackgroundSplash: Color.lerp(headerBackgroundSplash, other.headerBackgroundSplash, t),
-      boldHeaderContainerColor: Color.lerp(boldHeaderContainerColor, other.boldHeaderContainerColor, t),
+      headerClosedColor:
+          Color.lerp(headerClosedColor, other.headerClosedColor, t),
+      headerTextPressedDownColor: Color.lerp(
+          headerTextPressedDownColor, other.headerTextPressedDownColor, t),
+      headerBackgroundSplash:
+          Color.lerp(headerBackgroundSplash, other.headerBackgroundSplash, t),
+      boldHeaderContainerColor: Color.lerp(
+          boldHeaderContainerColor, other.boldHeaderContainerColor, t),
       borderColor: Color.lerp(borderColor, other.borderColor, t),
       iconColorDefault: Color.lerp(iconColorDefault, other.iconColorDefault, t),
       iconColorDown: Color.lerp(iconColorDown, other.iconColorDown, t),
-      iconColorDisabled: Color.lerp(iconColorDisabled, other.iconColorDisabled, t),
+      iconColorDisabled:
+          Color.lerp(iconColorDisabled, other.iconColorDisabled, t),
       iconPressedColor: Color.lerp(iconPressedColor, other.iconPressedColor, t),
-      disabledTextColor: Color.lerp(disabledTextColor, other.disabledTextColor, t),
-      borderSubtleColor: Color.lerp(borderSubtleColor, other.borderSubtleColor, t),
-      subtleHeaderContainerColor: Color.lerp(subtleHeaderContainerColor, other.subtleHeaderContainerColor, t),
+      disabledTextColor:
+          Color.lerp(disabledTextColor, other.disabledTextColor, t),
+      borderSubtleColor:
+          Color.lerp(borderSubtleColor, other.borderSubtleColor, t),
+      subtleHeaderContainerColor: Color.lerp(
+          subtleHeaderContainerColor, other.subtleHeaderContainerColor, t),
       bodySubtleColor: Color.lerp(bodySubtleColor, other.bodySubtleColor, t),
-      inkWellSplashColor: Color.lerp(inkWellSplashColor, other.inkWellSplashColor, t),
-      subtleHeaderBackgroundSplash: Color.lerp(subtleHeaderBackgroundSplash, other.subtleHeaderBackgroundSplash, t),
-      subtleDividerColor: Color.lerp(subtleDividerColor, other.subtleDividerColor, t),
-      dividerDefaultColor: Color.lerp(dividerDefaultColor, other.dividerDefaultColor, t),
-      subtleBottomCardColor: Color.lerp(subtleBottomCardColor, other.subtleBottomCardColor, t),
-      bottomDefaultCardColor: Color.lerp(bottomDefaultCardColor, other.bottomDefaultCardColor, t),
+      inkWellSplashColor:
+          Color.lerp(inkWellSplashColor, other.inkWellSplashColor, t),
+      subtleHeaderBackgroundSplash: Color.lerp(
+          subtleHeaderBackgroundSplash, other.subtleHeaderBackgroundSplash, t),
+      subtleDividerColor:
+          Color.lerp(subtleDividerColor, other.subtleDividerColor, t),
+      dividerDefaultColor:
+          Color.lerp(dividerDefaultColor, other.dividerDefaultColor, t),
+      subtleBottomCardColor:
+          Color.lerp(subtleBottomCardColor, other.subtleBottomCardColor, t),
+      bottomDefaultCardColor:
+          Color.lerp(bottomDefaultCardColor, other.bottomDefaultCardColor, t),
       leadingIconColor: Color.lerp(leadingIconColor, other.leadingIconColor, t),
       headerBoldTextStyleBold: headerBoldTextStyleBold,
       headerTextStyleSubtle: headerTextStyleSubtle,
       headerTextStyle: headerTextStyle,
       bodyTextStyle: bodyTextStyle,
-      headerBorderRadius: lerpDouble(headerBorderRadius, other.headerBorderRadius, t),
-      subtleBorderRadius: lerpDouble(subtleBorderRadius, other.subtleBorderRadius, t),
+      headerBorderRadius:
+          lerpDouble(headerBorderRadius, other.headerBorderRadius, t),
+      subtleBorderRadius:
+          lerpDouble(subtleBorderRadius, other.subtleBorderRadius, t),
       borderRadius: lerpDouble(borderRadius, other.borderRadius, t),
     );
   }
@@ -229,38 +259,64 @@ class _VAccordionState extends State<VAccordion> {
   Widget build(BuildContext context) {
     final dynamic defaultStyle;
     if (widget.vExt == null || widget.vExt is VDef) {
-      defaultStyle = Theme.of(context).brightness == Brightness.dark ? getDefaultColorSchemeDark()! : getDefaultColorScheme()!;
+      defaultStyle = Theme.of(context).brightness == Brightness.dark
+          ? getDefaultColorSchemeDark()!
+          : getDefaultColorScheme()!;
     } else {
-      defaultStyle = Theme.of(context).brightness == Brightness.dark ? getAltColorSchemeDark()! : getAltColorScheme()!;
+      defaultStyle = Theme.of(context).brightness == Brightness.dark
+          ? getAltColorSchemeDark()!
+          : getAltColorScheme()!;
     }
-    final headerBackgroundSplash = widget.style?.headerBackgroundSplash ?? defaultStyle.surfaceLowlight;
-    final boldHeaderContainerColor = widget.style?.boldHeaderContainerColor ?? defaultStyle.surface1;
-    final borderDisabledColor = widget.style?.borderDisabledColor ?? defaultStyle.transparent;
-    final borderSubtleColor = widget.style?.borderSubtleColor ?? defaultStyle.transparent;
-    final subtleHeaderContainerColor = widget.style?.subtleHeaderContainerColor ?? defaultStyle.transparent;
-    final bodySubtleColor = widget.style?.bodySubtleColor ?? defaultStyle.transparent;
-    final inkWellSplashColor = widget.style?.inkWellSplashColor ?? defaultStyle.transparent;
-    final subtleHeaderBackgroundSplash = widget.style?.subtleHeaderBackgroundSplash ?? defaultStyle.transparent;
-    final iconPressedColor = widget.style?.iconPressedColor ?? defaultStyle.activePressed;
-    final subtleDividerColor = widget.style?.subtleDividerColor ?? defaultStyle.transparent;
-    final dividerDefaultColor = widget.style?.dividerDefaultColor ?? defaultStyle.border;
-    final subtleBottomCardColor = widget.style?.subtleBottomCardColor ?? defaultStyle.transparent;
-    final bottomDefaultCardColor = widget.style?.bottomDefaultCardColor ?? defaultStyle.surface1;
-    final leadingIconColor = widget.style?.leadingIconColor ?? defaultStyle.active;
-    final headerBoldTextStyleBold = widget.style?.headerBoldTextStyleBold ?? defaultStyle.vAccordionProperties?.headerBoldTextStyle;
-    final headerTextStyleSubtle = widget.style?.headerTextStyleSubtle ?? defaultStyle.vAccordionProperties?.headerSubtleTextStyle;
-    final bodyTextStyle = widget.style?.bodyTextStyle ?? defaultStyle.vAccordionProperties?.bodyTextStyle;
-    final headerTextStyle = widget.style?.headerTextStyle ?? defaultStyle.vAccordionProperties?.headerTextStyle;
-    final subtleBorderRadius = widget.style?.subtleBorderRadius ?? defaultStyle.vAccordionProperties?.subtleBorderRadius;
-    final headerBorderRadius = widget.style?.headerBorderRadius ?? defaultStyle.vAccordionProperties?.headerBorderRadius;
-    final borderRadius = widget.style?.borderRadius ?? defaultStyle.vAccordionProperties?.borderRadius;
+    final headerBackgroundSplash =
+        widget.style?.headerBackgroundSplash ?? defaultStyle.surfaceLowlight;
+    final boldHeaderContainerColor =
+        widget.style?.boldHeaderContainerColor ?? defaultStyle.surface1;
+    final borderDisabledColor =
+        widget.style?.borderDisabledColor ?? defaultStyle.transparent;
+    final borderSubtleColor =
+        widget.style?.borderSubtleColor ?? defaultStyle.transparent;
+    final subtleHeaderContainerColor =
+        widget.style?.subtleHeaderContainerColor ?? defaultStyle.transparent;
+    final bodySubtleColor =
+        widget.style?.bodySubtleColor ?? defaultStyle.transparent;
+    final inkWellSplashColor =
+        widget.style?.inkWellSplashColor ?? defaultStyle.transparent;
+    final subtleHeaderBackgroundSplash =
+        widget.style?.subtleHeaderBackgroundSplash ?? defaultStyle.transparent;
+    final iconPressedColor =
+        widget.style?.iconPressedColor ?? defaultStyle.activePressed;
+    final subtleDividerColor =
+        widget.style?.subtleDividerColor ?? defaultStyle.transparent;
+    final dividerDefaultColor =
+        widget.style?.dividerDefaultColor ?? defaultStyle.border;
+    final subtleBottomCardColor =
+        widget.style?.subtleBottomCardColor ?? defaultStyle.transparent;
+    final bottomDefaultCardColor =
+        widget.style?.bottomDefaultCardColor ?? defaultStyle.surface1;
+    final leadingIconColor =
+        widget.style?.leadingIconColor ?? defaultStyle.active;
+    final headerBoldTextStyleBold = widget.style?.headerBoldTextStyleBold ??
+        defaultStyle.vAccordionProperties?.headerBoldTextStyle;
+    final headerTextStyleSubtle = widget.style?.headerTextStyleSubtle ??
+        defaultStyle.vAccordionProperties?.headerSubtleTextStyle;
+    final bodyTextStyle = widget.style?.bodyTextStyle ??
+        defaultStyle.vAccordionProperties?.bodyTextStyle;
+    final headerTextStyle = widget.style?.headerTextStyle ??
+        defaultStyle.vAccordionProperties?.headerTextStyle;
+    final subtleBorderRadius = widget.style?.subtleBorderRadius ??
+        defaultStyle.vAccordionProperties?.subtleBorderRadius;
+    final headerBorderRadius = widget.style?.headerBorderRadius ??
+        defaultStyle.vAccordionProperties?.headerBorderRadius;
+    final borderRadius = widget.style?.borderRadius ??
+        defaultStyle.vAccordionProperties?.borderRadius;
 
     Color borderColor() {
       if (!widget.isEnabled && widget.isSubtle) {
         return borderDisabledColor;
       }
       if (!widget.isEnabled) {
-        return widget.style?.disabledTextColor ?? defaultStyle.disabled.withOpacity(0.2);
+        return widget.style?.disabledTextColor ??
+            defaultStyle.disabled.withOpacity(0.2);
       }
       if (widget.isSubtle) {
         return borderSubtleColor!;
@@ -294,13 +350,15 @@ class _VAccordionState extends State<VAccordion> {
       }
       if (widget.isSubtle) {
         if (isDown) {
-          return widget.style?.headerTextPressedDownColor ?? defaultStyle.activePressed;
+          return widget.style?.headerTextPressedDownColor ??
+              defaultStyle.activePressed;
         }
         return widget.style?.headerTextColorDefault ?? defaultStyle.active;
       }
 
       if (isDown) {
-        return widget.style?.headerTextPressedDownColor ?? defaultStyle.activePressed;
+        return widget.style?.headerTextPressedDownColor ??
+            defaultStyle.activePressed;
       }
 
       if (!isOpen) {
@@ -351,7 +409,8 @@ class _VAccordionState extends State<VAccordion> {
                     ),
             ),
             child: Card(
-              color: widget.isSubtle ? bodySubtleColor : boldHeaderContainerColor,
+              color:
+                  widget.isSubtle ? bodySubtleColor : boldHeaderContainerColor,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: isOpen && widget.isEnabled
@@ -371,7 +430,9 @@ class _VAccordionState extends State<VAccordion> {
                 onDidGainAccessibilityFocus: widget.isEnabled
                     ? () {
                         SemanticsService.announce(
-                          isOpen ? "${widget.title}. Button. Expanded. ${widget.badgeStatus ?? ""}" : "${widget.title}. Button. Collapsed. ${widget.badgeStatus ?? ""}",
+                          isOpen
+                              ? "${widget.title}. Button. Expanded. ${widget.badgeStatus ?? ""}"
+                              : "${widget.title}. Button. Collapsed. ${widget.badgeStatus ?? ""}",
                           TextDirection.ltr,
                         );
                       }
@@ -383,7 +444,9 @@ class _VAccordionState extends State<VAccordion> {
                         )
                       : BorderRadius.circular(8),
                   splashColor: inkWellSplashColor,
-                  highlightColor: widget.isSubtle ? subtleHeaderBackgroundSplash : headerBackgroundSplash?.withOpacity(0.6),
+                  highlightColor: widget.isSubtle
+                      ? subtleHeaderBackgroundSplash
+                      : headerBackgroundSplash?.withOpacity(0.6),
                   onHighlightChanged: ((value) {
                     setState(() {
                       isDown = value;
@@ -433,7 +496,8 @@ class _VAccordionState extends State<VAccordion> {
                                 children: [
                                   widget.leadingSvgIcon != null
                                       ? Padding(
-                                          padding: const EdgeInsets.only(right: 8),
+                                          padding:
+                                              const EdgeInsets.only(right: 8),
                                           child: VIcon(
                                             svgIcon: widget.leadingSvgIcon!,
                                             iconHeight: 24,
@@ -468,10 +532,16 @@ class _VAccordionState extends State<VAccordion> {
               children: [
                 Padding(
                   padding: EdgeInsets.zero,
-                  child: Container(height: 1, color: widget.isSubtle ? subtleDividerColor : dividerDefaultColor),
+                  child: Container(
+                      height: 1,
+                      color: widget.isSubtle
+                          ? subtleDividerColor
+                          : dividerDefaultColor),
                 ),
                 Card(
-                  color: widget.isSubtle ? subtleBottomCardColor : bottomDefaultCardColor,
+                  color: widget.isSubtle
+                      ? subtleBottomCardColor
+                      : bottomDefaultCardColor,
                   elevation: 0,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(

@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -289,137 +289,141 @@ class VBanner extends StatelessWidget {
       return hasTitle ? VFontWeight.semiBold : VFontWeight.regular;
     }
 
-    if (visible) {
-      SemanticsService.announce(
-          hasTitle ? "$title$description" : description, TextDirection.ltr);
-    }
-
     return Visibility(
       visible: visible,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            margin: margin,
-            padding: bannerPadding,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(borderRadius),
-                boxShadow: [
-                  BoxShadow(
-                    color: boxShadowColor,
-                    spreadRadius: boxShadowSpreadRadius,
-                    blurRadius: boxShadowBlurRadius,
-                    offset: boxShadowOffset, // changes position of shadow
+      child: Semantics(
+        onDidGainAccessibilityFocus: () {
+          SemanticsService.announce(
+            hasTitle ? "$title$description" : description,
+            TextDirection.ltr,
+          );
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: margin,
+              padding: bannerPadding,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  boxShadow: [
+                    BoxShadow(
+                      color: boxShadowColor,
+                      spreadRadius: boxShadowSpreadRadius,
+                      blurRadius: boxShadowBlurRadius,
+                      offset: boxShadowOffset, // changes position of shadow
+                    ),
+                  ],
+                  color: backgroundColor,
+                  border: Border(
+                      bottom: BorderSide(color: bannerHighlight!, width: 3))),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: iconPadding,
+                      child: bannerIcon!,
+                    ),
                   ),
-                ],
-                color: backgroundColor,
-                border: Border(
-                    bottom: BorderSide(color: bannerHighlight!, width: 3))),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: iconPadding,
-                    child: bannerIcon!,
-                  ),
-                ),
-                Expanded(
-                  flex: hasClose ? 6 : 10,
-                  child: Padding(
-                    padding: contentPadding,
-                    child: Semantics(
-                      // Force the semantics order of this part to become higher priority than close button
-                      sortKey: const OrdinalSortKey(1.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            hasTitle ? title : description,
-                            style: titleTextStyle.copyWith(
-                              fontWeight: getFirstLineStyle(hasTitle),
-                            ),
-                          ),
-                          if (hasTitle)
+                  Expanded(
+                    flex: hasClose ? 6 : 10,
+                    child: Padding(
+                      padding: contentPadding,
+                      child: Semantics(
+                        // Force the semantics order of this part to become higher priority than close button
+                        sortKey: const OrdinalSortKey(1.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Text(
-                              description,
-                              style: descriptionTextStyle,
-                            ),
-                          if (hasLink)
-                            VLink(
-                                linkFontSize: 16,
-                                linkFontWeight: VFontWeight.medium,
-                                // Making touchArea 12.5 to meet a11y requirement
-                                touchArea: 12.5,
-                                title: link,
-                                isUnderlined: true,
-                                onPressed: onLinkPressed),
-                          if (hasAction) ...[
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            VButton(
-                              style: VButtonStyle(
-                                backgroundColorActive: VColors.transparent,
-                                backgroundColorDisabled: VColors.transparent,
-                                foregroundColorActive: VColors.defaultActive,
-                                foregroundColorDisabled: VColors.disabled,
-                                overlayColorFocused:
-                                    VColors.defaultSurfaceLowlight,
-                                overlayColorPressed:
-                                    VColors.defaultSurfaceLowlight,
-                                borderSideActive: const BorderSide(
-                                  color: VColors.defaultActive,
-                                  style: BorderStyle.solid,
-                                ),
-                                borderSideDisabled: BorderSide(
-                                  color: VColors.defaultDisabled,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              onPressed: onActionPressed,
-                              child: Text(
-                                action,
-                                style: defaultVTheme.textStyles.buttonMedium
-                                    .copyWith(color: VColors.defaultActive),
+                              hasTitle ? title : description,
+                              style: titleTextStyle.copyWith(
+                                fontWeight: getFirstLineStyle(hasTitle),
                               ),
                             ),
+                            if (hasTitle)
+                              Text(
+                                description,
+                                style: descriptionTextStyle,
+                              ),
+                            if (hasLink)
+                              VLink(
+                                  linkFontSize: 16,
+                                  linkFontWeight: VFontWeight.medium,
+                                  // Making touchArea 12.5 to meet a11y requirement
+                                  touchArea: 12.5,
+                                  title: link,
+                                  isUnderlined: true,
+                                  onPressed: onLinkPressed),
+                            if (hasAction) ...[
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              VButton(
+                                style: VButtonStyle(
+                                  backgroundColorActive: VColors.transparent,
+                                  backgroundColorDisabled: VColors.transparent,
+                                  foregroundColorActive: VColors.defaultActive,
+                                  foregroundColorDisabled: VColors.disabled,
+                                  overlayColorFocused:
+                                      VColors.defaultSurfaceLowlight,
+                                  overlayColorPressed:
+                                      VColors.defaultSurfaceLowlight,
+                                  borderSideActive: const BorderSide(
+                                    color: VColors.defaultActive,
+                                    style: BorderStyle.solid,
+                                  ),
+                                  borderSideDisabled: BorderSide(
+                                    color: VColors.defaultDisabled,
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                                onPressed: onActionPressed,
+                                child: Text(
+                                  action,
+                                  style: defaultVTheme.textStyles.buttonMedium
+                                      .copyWith(color: VColors.defaultActive),
+                                ),
+                              ),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                if (hasClose)
-                  Expanded(
-                    child: Semantics(
-                      hint: "Close ${getBannerState(bannerState)}",
-                      button: true,
-                      child: Material(
-                        color: backgroundColor,
-                        child: InkWell(
-                          highlightColor: VColors.transparent,
-                          customBorder: const CircleBorder(),
-                          splashColor: VColors.defaultSurfaceLowlight,
-                          onTap: onClosePressed,
-                          child: Container(
-                            width: 44,
-                            height: 44,
-                            padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
-                            child: VIcon(
-                              svgIcon: VIcons.closeTiny,
-                              iconColor:
-                                  VColors.defaultActiveSubtle.withOpacity(0.5),
+                  if (hasClose)
+                    Expanded(
+                      child: Semantics(
+                        hint: "Close ${getBannerState(bannerState)}",
+                        button: true,
+                        child: Material(
+                          color: backgroundColor,
+                          child: InkWell(
+                            highlightColor: VColors.transparent,
+                            customBorder: const CircleBorder(),
+                            splashColor: VColors.defaultSurfaceLowlight,
+                            onTap: onClosePressed,
+                            child: Container(
+                              width: 48,
+                              height: 48,
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                              child: VIcon(
+                                svgIcon: VIcons.closeTiny,
+                                iconColor: VColors.defaultActiveSubtle
+                                    .withOpacity(0.5),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

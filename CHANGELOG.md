@@ -19,6 +19,19 @@
 
 # Changelog
 
+## 8.2.0 (2025-09-26)
+
+### Feature 8.2.0
+
+- Added a colletion of patterns.
+
+  - Application layout
+  - Chat
+  - File Upload
+  - Wizard
+
+- Added a new property enableInteractiveSelection to VInput.
+
 ## 8.1.2 (2025-04-10)
 
 ### Feature 8.1.2

@@ -31,7 +31,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 8.1.2
+version: 8.2.0
 
 environment:
   sdk: ">=2.17.0 <4.0.0"
@@ -50,13 +50,6 @@ dependencies:
   # visa_nova_flutter:
   #   path: ../
 
-  # Use this when testing artifactory
-  # visa_nova_flutter:
-  #   version: ^8.1.2
-  #   hosted:
-  #     name: visa_nova_flutter
-  #     url: https://artifactory.trusted.visa.com/api/pub/visa-commons-flutter
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -65,8 +58,10 @@ dependencies:
   url_strategy: ^0.2.0
   provider: ^6.0.5
   google_tag_manager: ^0.1.0
-  visa_nova_flutter: ^8.1.2
+  visa_nova_flutter: ^8.2.0
   intl: ^0.20.2
+  lottie: ^3.3.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +87,8 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/chat/
+    - assets/lottie_animations/
+    - assets/gifs/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

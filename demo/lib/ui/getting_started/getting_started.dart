@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 //
 // Visa Nova Flutter Demo GettingStarted Page
 import 'package:demo/patterns/application_layout.dart';
-import 'package:demo/patterns/chats.dart';
+import 'package:demo/patterns/chat_pattern/chat_landing.dart';
 import 'package:demo/patterns/file_upload.dart';
 import 'package:demo/patterns/wizard.dart';
 import 'package:demo/ui/badge/badge.dart';
@@ -63,10 +63,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 var importCode = """
   visa_nova_flutter:
-    version: ^8.1.2
-    hosted:
-      name: visa_nova_flutter
-      url: https://artifactory.trusted.visa.com/api/pub/visa-commons-flutter/
+    version: ^8.2.0
 """;
 var appLevelThemeCode = """
   void main() {
@@ -352,7 +349,7 @@ class GettingStarted extends StatelessWidget {
     Page(
       "Chats",
       "chats",
-      const ChatsPage(),
+      const ChatLandingPage(),
       "Chat is a real-time communication tool that allows users to send and receive messages instantly.",
     ),
     Page(
@@ -559,14 +556,7 @@ class GettingStarted extends StatelessWidget {
                             title:
                                 "Artifactory for Dart Flutter packages setup",
                             isUnderlined: true,
-                            onPressed: () {
-                              // launchUrl(
-                              //   Uri.parse(
-                              //     'https://visawiki.trusted.visa.com/pages/viewpage.action?pageId=1158164839',
-                              //   ),
-                              //   mode: LaunchMode.externalApplication,
-                              // );
-                            },
+                            onPressed: () {},
                           ),
                         ),
                         const TextSpan(
@@ -613,14 +603,7 @@ class GettingStarted extends StatelessWidget {
                           child: VLink(
                             title: "VPDS Flutter CHANGELOG.md",
                             isUnderlined: true,
-                            onPressed: () {
-                              // launchUrl(
-                              //   Uri.parse(
-                              //     'https://stash.trusted.visa.com:7990/projects/VC/repos/nova-flutter/browse/CHANGELOG.md',
-                              //   ),
-                              //   mode: LaunchMode.externalApplication,
-                              // );
-                            },
+                            onPressed: () {},
                           ),
                         ),
                       ],

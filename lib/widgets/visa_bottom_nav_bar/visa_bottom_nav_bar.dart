@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -280,7 +280,7 @@ class VBottomNavBarItems extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 10,
                   )
                 ],
               ),

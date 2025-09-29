@@ -1,55 +1,130 @@
 {
-    "chatSession": [
-      {
-        "time": "2023-10-01T10:15:00Z",
-        "username": "Alex",
-        "message": "Hey there! How are you doing?"
-      },
-      {
-        "time": "2023-10-01T10:16:00Z",
-        "username": "Miller",
-        "message": "Hi! I'm good, thanks. How about you?"
-      },
-      {
-        "time": "2023-10-01T10:17:00Z",
-        "username": "Alex",
-        "message": "I'm doing well, just working on a project."
-      },
-      {
-        "time": "2023-10-01T10:18:00Z",
-        "username": "Miller",
-        "message": "Sounds interesting! What project are you working on?"
-      },
-      {
-        "time": "2023-10-01T10:19:00Z",
-        "username": "Alex",
-        "message": "I'm building a chat screen for a Flutter app."
-      },
-      {
-        "time": "2023-10-01T10:20:00Z",
-        "username": "Miller",
-        "message": "Nice! Do you need any help with that?"
-      },
-      {
-        "time": "2023-10-01T10:21:00Z",
-        "username": "Alex",
-        "message": "Yes, I'm trying to figure out the best way to handle real-time messages."
-      },
-      {
-        "time": "2023-10-01T10:22:00Z",
-        "username": "Miller",
-        "message": "You can use WebSockets for real-time communication. Have you looked into that?"
-      },
-      {
-        "time": "2023-10-01T10:23:00Z",
-        "username": "Alex",
-        "message": "I have, but I'm not sure how to integrate it with my state management solution."
-      },
-      {
-        "time": "2023-10-01T10:24:00Z",
-        "username": "Miller",
-        "message": "I can help with that. Let's look at your code together."
-      }
-    ]
-  }
-  
+  "chatSession": [
+    {
+      "time": "2023-10-01T12:34:00Z",
+      "username": "User 1",
+      "message": "Hi, I'm a new user exploring the chat app.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:34:00Z",
+      "username": "User 1",
+      "message": "Can you show me what short and long received messages look like?",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:35:00Z",
+      "username": "User 2",
+      "message": "Sure! This is a short received message.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:35:00Z",
+      "username": "User 2",
+      "message": "This is a longer received message with more text. It fills the container to a maximum width then wraps to another line.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:36:00Z",
+      "username": "User 1",
+      "message": "Can you show me what it looks like when a request is processing and when a user is typing?",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:37:00Z",
+      "username": "User 2",
+      "message": "Absolutely. I'll briefly showcase what it looks like when processing a request and when a user is typing.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:37:00Z",
+      "username": "User 2",
+      "message": "",
+      "status": "sent",
+      "showLoader": true,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:37:00Z",
+      "username": "User 2",
+      "message": "",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": true
+    },
+    {
+      "time": "2023-10-01T12:38:00Z",
+      "username": "User 2 ",
+      "message": "Is there anything else I can help with?",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:39:00Z",
+      "username": "User 1",
+      "message": "Yes. Can you show me what it looks like when a message fails to send?",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:40:00Z",
+      "username": "User 2",
+      "message": "Of course. I'll now show a preview of your last message as if it failed to send.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": "Error, message failed to send.",
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:41:00Z",
+      "username": "User 1",
+      "message": "Yes. Can you show me what it looks like when a message fails to send?",
+      "status": "failed",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:42:00Z",
+      "username": "User 2",
+      "message": "Is there anything else I can help with?",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    },
+    {
+      "time": "2023-10-01T12:43:00Z",
+      "username": "User 1",
+      "message": "No thanks, I'd like to end the chat.",
+      "status": "sent",
+      "showLoader": false,
+      "errorText": null,
+      "isTyping": false
+    }
+  ]
+}

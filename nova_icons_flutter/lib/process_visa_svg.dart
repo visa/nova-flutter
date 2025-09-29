@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ import 'package:xml/xml.dart';
 
 void main() {
   // Setup read and write location
-  final directory = Directory('visa_nova_icons_raw/');
+  final directory = Directory('Visa');
   final outputDartFile = File('svg_content_new.dart');
   final buffer = StringBuffer();
 
@@ -71,7 +71,10 @@ void main() {
     //print('Processing: ${file.path}');
     if (file is File && file.path.endsWith('.svg')) {
       //print('Checking file: ${file.path}');
-      final content = file.readAsStringSync();
+      final fullContent = file.readAsStringSync();
+      // Skip the first 16 lines (license header)
+      final lines = fullContent.split('\n');
+      final content = lines.length > 16 ? lines.skip(16).join('\n') : fullContent;
       //print('File content: $content');
       final document = XmlDocument.parse(content);
 

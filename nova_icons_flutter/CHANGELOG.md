@@ -19,6 +19,39 @@
 
 # Changelog
 
+## 4.1.0 (2025-09-26)
+
+### Icon **additions**
+
+_Internal users may recognize these icons from our extended package. That package is no longer needed as all icons have been absorbed here._
+
+- `artificial-intelligence-alt`
+- `bug`
+- `bug-debug`
+- `chat-ai`
+- `choices`
+- `connections`
+- `currency-convert`
+- `currency-convert-alt`
+- `currency-convert-pound`
+- `currency-convert-yen`
+- `data-alt`
+- `device-videogame`
+- `drag-alt`
+- `engineering`
+- `fraud`
+- `goal`
+- `key-change`
+- `language`
+- `launch`
+- `photo`
+- `savings-account`
+- `security-firewall`
+- `signature-alt`
+- `thumbs-down`
+- `thumbs-up`
+- `token`
+
 ## 4.0.3 (2025-04-10)
 
 ### Feature 4.0.3

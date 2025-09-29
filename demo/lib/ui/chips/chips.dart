@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ class _ChipsPageState extends State<ChipsPage> {
   Widget build(BuildContext context) {
     setPageTitle('Chips', context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(

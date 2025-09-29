@@ -48,12 +48,12 @@ void main() {
   testWidgets('VWizard test', (WidgetTester tester) async {
     // Create the VWizard widget
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: VWizard(
+            completedSteps: [],
             currentStep: 2,
             totalSteps: 5,
-            child: Container(),
           ),
         ),
       ),
@@ -73,10 +73,10 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: VWizard(
+            completedSteps: const [],
             vExt: VAlt(),
             currentStep: 2,
             totalSteps: 5,
-            child: Container(),
           ),
         ),
       ),

@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +15,9 @@
 //
 //
 // Visa Nova Flutter Demo Wizard Page
+// BEGIN WizardPage
 import 'package:demo/utilities.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/semantics.dart';
 import 'package:visa_nova_flutter/visa_nova_flutter.dart';
 import 'package:visa_nova_icons_flutter/visa_nova_icons_flutter.dart';
@@ -26,7 +25,6 @@ import 'package:visa_nova_icons_flutter/visa_nova_icons_flutter.dart';
 import 'package:demo/codeviewer/code_segments.dart';
 import 'package:demo/main.dart';
 import 'package:demo/ui/show_code_accordion.dart';
-import 'package:demo/ui/getting_started/getting_started.dart';
 
 class WizardPage extends StatefulWidget {
   const WizardPage({super.key});
@@ -41,7 +39,7 @@ class _WizardPageState extends State<WizardPage> {
   Widget build(BuildContext context) {
     setPageTitle("Wizard", context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(
@@ -50,12 +48,13 @@ class _WizardPageState extends State<WizardPage> {
           drawer: const MyDrawer(
             pageTitle: "Wizard",
           ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  VButton(
+          body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Center(
+                  child: VButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -66,15 +65,8 @@ class _WizardPageState extends State<WizardPage> {
                     },
                     child: const Text('Start wizard'),
                   ),
-                  smallHeight(),
-                  const ShowCodeAccordion(
-                    copyLabel: "Example of wizard",
-                    codeSegment: CodeSegments.VWizard,
-                    exampleName: "Wizard",
-                    componentName: "Wizard",
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           )),
     );
@@ -90,6 +82,7 @@ class WizardWidget extends StatefulWidget {
 
 class _WizardWidgetState extends State<WizardWidget> {
   int currentIndex = 0;
+  List<bool> completedSteps = [false, false, false, false];
   bool hasError = false;
   TextEditingController myLocalController1 = TextEditingController();
   TextEditingController myLocalController2 = TextEditingController();
@@ -105,7 +98,7 @@ class _WizardWidgetState extends State<WizardWidget> {
           myLocalController: myLocalController1,
           errorText:
               "This is required text that describes the error in more detail.",
-          topLabelText: "Label (required)",
+          topLabelText: "* Label",
           inputAction: TextInputAction.send,
         ),
       ),
@@ -116,7 +109,7 @@ class _WizardWidgetState extends State<WizardWidget> {
           myLocalController: myLocalController2,
           errorText:
               "This is required text that describes the error in more detail.",
-          topLabelText: "Label (required)",
+          topLabelText: "* Label",
           inputAction: TextInputAction.send,
         ),
       ),
@@ -127,7 +120,7 @@ class _WizardWidgetState extends State<WizardWidget> {
           myLocalController: myLocalController3,
           errorText:
               "This is required text that describes the error in more detail.",
-          topLabelText: "Label (required)",
+          topLabelText: "* Label",
           inputAction: TextInputAction.send,
         ),
       ),
@@ -146,9 +139,9 @@ class _WizardWidgetState extends State<WizardWidget> {
                 label: "edit",
                 child: InkWell(
                   child: Container(
-                    width: 44,
-                    height: 44,
-                    padding: const EdgeInsets.all(13.5),
+                    width: 48,
+                    height: 48,
+                    padding: const EdgeInsets.all(15.5),
                     child: const VIcon(
                       svgIcon: VIcons.editTiny,
                       iconColor: VColors.defaultActive,
@@ -175,9 +168,9 @@ class _WizardWidgetState extends State<WizardWidget> {
                 label: "edit",
                 child: InkWell(
                   child: Container(
-                    width: 44,
-                    height: 44,
-                    padding: const EdgeInsets.all(13.5),
+                    width: 48,
+                    height: 48,
+                    padding: const EdgeInsets.all(15.5),
                     child: const VIcon(
                       svgIcon: VIcons.editTiny,
                       iconColor: VColors.defaultActive,
@@ -204,9 +197,9 @@ class _WizardWidgetState extends State<WizardWidget> {
                 label: "edit",
                 child: InkWell(
                   child: Container(
-                    width: 44,
-                    height: 44,
-                    padding: const EdgeInsets.all(13.5),
+                    width: 48,
+                    height: 48,
+                    padding: const EdgeInsets.all(15.5),
                     child: const VIcon(
                       svgIcon: VIcons.editTiny,
                       iconColor: VColors.defaultActive,
@@ -247,6 +240,7 @@ class _WizardWidgetState extends State<WizardWidget> {
     }
 
     setState(() {
+      completedSteps[currentIndex] = true;
       currentIndex = (currentIndex + 1) % getFields().length;
       hasError = false;
       saveMessage = "";
@@ -271,6 +265,7 @@ class _WizardWidgetState extends State<WizardWidget> {
 
     setState(() {
       // currentIndex = (currentIndex + 1) % getFields().length;
+      completedSteps[currentIndex] = true;
       hasError = false;
       saveMessage = "Changes have been saved.";
     });
@@ -322,9 +317,9 @@ class _WizardWidgetState extends State<WizardWidget> {
                 customBorder: const CircleBorder(),
                 splashColor: VColors.defaultSurfaceLowlight,
                 child: Container(
-                  width: 44,
-                  height: 44,
-                  padding: const EdgeInsets.all(10),
+                  width: 48,
+                  height: 48,
+                  padding: const EdgeInsets.all(12),
                   child: const ExcludeSemantics(
                     child: VIcon(
                       svgIcon: VIcons.closeLow,
@@ -353,9 +348,9 @@ class _WizardWidgetState extends State<WizardWidget> {
                               child: VDialogContent(
                                 hasX: true,
                                 dialogState: DialogState.warning,
-                                title: "Exit form?",
+                                title: "Exit form",
                                 description:
-                                    "This is required text that describes the dialog title in more detail.",
+                                    "Your progress has been automatically saved. Continue from where you left off when you return.",
                                 dismissText: "Cancel",
                                 actionText: "Exit",
                                 dialogAction: () {
@@ -376,115 +371,155 @@ class _WizardWidgetState extends State<WizardWidget> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-        ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            VWizardDefault(
-              currentStep: currentIndex + 1,
-              totalSteps: getFields().length,
-              hasErrors: hasError,
-              child: getFields()[currentIndex],
-            ),
-            largeHeight(),
-            if (currentIndex < getFields().length - 1)
-              VButton(
-                child: const Text("Save"),
-                onPressed: saveButton,
-                style: VButtonStyle(
-                  minimumSize: const Size(double.infinity, 46),
-                  backgroundColorActive: VColors.transparent,
-                  backgroundColorDisabled: VColors.transparent,
-                  foregroundColorActive: VColors.defaultActive,
-                  foregroundColorDisabled: VColors.disabled,
-                  overlayColorFocused: VColors.defaultSurfaceLowlight,
-                  overlayColorPressed: VColors.defaultSurfaceLowlight,
-                  borderSideActive: const BorderSide(
-                    color: VColors.defaultActive,
-                    style: BorderStyle.solid,
-                  ),
-                  borderSideDisabled: BorderSide(
-                    color: VColors.defaultDisabled,
-                    style: BorderStyle.solid,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              // --- Stepper ---
+              VWizardDefault(
+                currentStep: currentIndex + 1,
+                totalSteps: getFields().length,
+                completedSteps: completedSteps,
+                hasErrors: hasError,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              // --- Section Message ---
+              if (hasError)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: VSectionMessage(
+                    sectionMessageState: SectionMessageState.error,
+                    visible: true,
+                    description:
+                        "This is text that describes the section message in more detail.",
+                    hasLink: true,
+                    link: "Close",
+                    onLinkPressed: () {},
                   ),
                 ),
-              ),
-            largeHeight(),
-            VButton(
-              style: const VButtonStyle(
-                minimumSize: Size(double.infinity, 46),
-              ),
-              onPressed:
-                  currentIndex == getFields().length - 1 ? submit : nextField,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    currentIndex == getFields().length - 1 ? "Submit" : "Next",
-                    style: defaultVTheme.textStyles.uiLabel.copyWith(
-                      color: VColors.defaultSurface1,
-                      fontWeight: VFontWeight.semiBold,
-                      fontSize: 13,
+              // --- Required field text ---
+              if (currentIndex < getFields().length - 1)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "* Indicates a required field",
+                      style: defaultVTheme.textStyles.bodyText2.copyWith(
+                        color: VColors.defaultText,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                  smallWidth(),
-                  currentIndex == getFields().length - 1
-                      ? const SizedBox()
-                      : const VIcon(
-                          svgIcon: VIcons.arrowRightLow,
-                          iconColor: VColors.defaultSurface1,
-                          iconHeight: 17,
-                          iconWidth: 17,
-                        ),
-                ],
+                ),
+              // --- Field for current step ---
+              getFields()[currentIndex],
+              largeHeight(),
+              // --- Save button ---
+              if (currentIndex < getFields().length - 1)
+                VButton(
+                  child: const Text("Save"),
+                  onPressed: saveButton,
+                  style: VButtonStyle(
+                    minimumSize: const Size(double.infinity, 46),
+                    backgroundColorActive: VColors.transparent,
+                    backgroundColorDisabled: VColors.transparent,
+                    foregroundColorActive: VColors.defaultActive,
+                    foregroundColorDisabled: VColors.disabled,
+                    overlayColorFocused: VColors.defaultSurfaceLowlight,
+                    overlayColorPressed: VColors.defaultSurfaceLowlight,
+                    borderSideActive: const BorderSide(
+                      color: VColors.defaultActive,
+                      style: BorderStyle.solid,
+                    ),
+                    borderSideDisabled: BorderSide(
+                      color: VColors.defaultDisabled,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
+              largeHeight(),
+              VButton(
+                style: const VButtonStyle(
+                  minimumSize: Size(double.infinity, 46),
+                ),
+                onPressed:
+                    currentIndex == getFields().length - 1 ? submit : nextField,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      currentIndex == getFields().length - 1
+                          ? "Submit"
+                          : "Next",
+                      style: defaultVTheme.textStyles.uiLabel.copyWith(
+                        color: VColors.defaultSurface1,
+                        fontWeight: VFontWeight.semiBold,
+                        fontSize: 13,
+                      ),
+                    ),
+                    smallWidth(),
+                    currentIndex == getFields().length - 1
+                        ? const SizedBox()
+                        : const VIcon(
+                            svgIcon: VIcons.arrowForwardTiny,
+                            iconColor: VColors.defaultSurface1,
+                            iconHeight: 17,
+                            iconWidth: 17,
+                          ),
+                  ],
+                ),
               ),
-            ),
-            largeHeight(),
-            if (saveMessage.isNotEmpty)
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    saveMessage,
-                    style: defaultVTheme.textStyles.baseTextStyle,
-                  )),
-          ],
+              largeHeight(),
+              if (saveMessage.isNotEmpty)
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      saveMessage,
+                      style: defaultVTheme.textStyles.baseTextStyle,
+                    )),
+              const SizedBox(
+                height: 32,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-// BEGIN VWizard
-
 class VWizardDefault extends StatelessWidget {
-  const VWizardDefault(
-      {super.key,
-      required this.currentStep,
-      required this.totalSteps,
-      required this.hasErrors,
-      required this.child});
+  const VWizardDefault({
+    super.key,
+    required this.completedSteps,
+    required this.currentStep,
+    required this.totalSteps,
+    required this.hasErrors,
+  });
   final int currentStep;
   final int totalSteps;
   final bool hasErrors;
-  final Widget child;
+  final List<bool> completedSteps;
 
   @override
   Widget build(BuildContext context) {
     return VWizard(
       currentStep: currentStep,
       totalSteps: totalSteps,
+      completedSteps: completedSteps,
       hasError: hasErrors,
-      child: child,
     );
   }
 }
-
-// END VWizard
 
 class SuccessPage extends StatelessWidget {
   const SuccessPage({super.key});
@@ -503,9 +538,9 @@ class SuccessPage extends StatelessWidget {
                 customBorder: const CircleBorder(),
                 splashColor: VColors.defaultSurfaceLowlight,
                 child: Container(
-                  width: 44,
-                  height: 44,
-                  padding: const EdgeInsets.all(10),
+                  width: 48,
+                  height: 48,
+                  padding: const EdgeInsets.all(12),
                   child: const ExcludeSemantics(
                     child: VIcon(
                       svgIcon: VIcons.closeLow,
@@ -554,11 +589,11 @@ class SuccessPage extends StatelessWidget {
                   minimumSize: Size(double.infinity, 46),
                 ),
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const WizardPage()),
-                    (Route<dynamic> route) => false,
-                  );
+                  // Navigator.pushAndRemoveUntil(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const WizardPage()),
+                  //   (Route<dynamic> route) => false,
+                  // );
                 },
                 child: Text(
                   "Primary action",
@@ -576,3 +611,4 @@ class SuccessPage extends StatelessWidget {
     );
   }
 }
+// END

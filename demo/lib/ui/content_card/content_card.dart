@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +41,7 @@ class _ContentCardState extends State<ContentCard> {
   Widget build(BuildContext context) {
     setPageTitle('Content Card', context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(

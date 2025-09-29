@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -151,11 +151,11 @@ class VAppBar extends StatelessWidget implements PreferredSizeWidget {
                     },
                 // 44dp passes VGAR A11y test but does not pass Android A11y scanner
                 child: Padding(
-                  padding: const EdgeInsets.all(13.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: VIcon(
-                    svgIcon: VIcons.arrowLeftLow,
-                    iconHeight: 16,
-                    iconWidth: 16,
+                    svgIcon: VIcons.arrowBackLow,
+                    iconHeight: 24,
+                    iconWidth: 24,
                     iconColor: iconColor,
                   ),
                 ),

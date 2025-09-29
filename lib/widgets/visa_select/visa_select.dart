@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -234,6 +234,8 @@ class _VSelectState extends State<VSelect> {
         defaultStyle.vSelectProperties?.dropdownWidth;
     final dropDownBorderRadius = widget.style?.dropDownBorderRadius ??
         defaultStyle.vSelectProperties?.dropDownBorderRadius;
+    final backgroundColor =
+        widget.style?.backgroundColor ?? defaultStyle.surface1;
     final dropDownBorderColor =
         widget.style?.dropDownBorderColor ?? defaultStyle.border;
     final splashColor =
@@ -314,272 +316,276 @@ class _VSelectState extends State<VSelect> {
     }
 
     return widget.isInline
-        ? Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              widget.headerLabel != null
-                  ? Padding(
-                      padding:
-                          EdgeInsets.only(right: 8, top: buttonHeight! / 3.0),
-                      child: Text(
-                        widget.headerLabel!,
-                        style: headerTextStyle!.copyWith(
-                          color: textLabelColor(),
+        ? Container(
+            color: backgroundColor,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                widget.headerLabel != null
+                    ? Padding(
+                        padding:
+                            EdgeInsets.only(right: 8, top: buttonHeight! / 3.0),
+                        child: Text(
+                          widget.headerLabel!,
+                          style: headerTextStyle!.copyWith(
+                            color: textLabelColor(),
+                          ),
                         ),
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-              SizedBox(
-                width: width(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Semantics(
-                      onDidGainAccessibilityFocus:
-                          widget.onDidGainAccessibilityFocus ??
-                              () {
-                                SemanticsService.announce(
-                                  (widget.isDisabled
-                                      ? "Collapsed. ${widget.headerLabel}.${widget.buttonText}. popup disabled"
-                                      : widget.semanticReadout ??
-                                          "Collapsed. ${widget.headerLabel}.${widget.buttonText}. popup button. double tap to activate"),
-                                  TextDirection.ltr,
-                                );
-                              },
-                      excludeSemantics: true,
-                      child: Focus(
-                        focusNode: widget.focusNode,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(borderRadius!),
-                          child: IntrinsicWidth(
-                            child: Column(
-                              children: [
-                                PopupMenuButton(
-                                  constraints: BoxConstraints(
-                                    minWidth: width(),
-                                  ),
-                                  color: dropdownColor,
-                                  tooltip: widget.buttonText.toString(),
-                                  key: _popUpButtonKey,
-                                  enabled: isTapped,
-                                  splashRadius: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        dropDownBorderRadius!),
-                                    side: BorderSide(
-                                      color: dropDownBorderColor!,
+                      )
+                    : const SizedBox.shrink(),
+                SizedBox(
+                  width: width(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Semantics(
+                        onDidGainAccessibilityFocus:
+                            widget.onDidGainAccessibilityFocus ??
+                                () {
+                                  SemanticsService.announce(
+                                    (widget.isDisabled
+                                        ? "Collapsed. popup disabled"
+                                        : widget.semanticReadout ??
+                                            "Collapsed. popup button. double tap to activate"),
+                                    TextDirection.ltr,
+                                  );
+                                },
+                        excludeSemantics: true,
+                        child: Focus(
+                          focusNode: widget.focusNode,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(borderRadius!),
+                            child: IntrinsicWidth(
+                              child: Column(
+                                children: [
+                                  PopupMenuButton(
+                                    constraints: BoxConstraints(
+                                      minWidth: width(),
                                     ),
-                                  ),
-                                  position: widget.position,
-                                  itemBuilder: widget.itemBuilder,
-                                  offset: widget.offset,
-                                  onCanceled: widget.isDisabled
-                                      ? null
-                                      : () {
-                                          widget.onCanceled;
-                                          setState(() {
-                                            isTapped = false;
-                                            isOpen = false;
-                                          });
-                                        },
-                                  onSelected: widget.isDisabled
-                                      ? null
-                                      : ((value) {
-                                          widget.onSelected != null
-                                              ? widget.onSelected!(value)
-                                              : null;
-                                          setState(() {
-                                            isTapped = false;
-                                            isOpen = false;
-                                          });
-                                        }),
-                                  child: GestureDetector(
-                                    onTap: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : (() {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = true;
-                                            });
-                                            _popUpButtonKey.currentState!
-                                                .showButtonMenu();
-                                          }),
-                                    onTapDown: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : ((_) {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = false;
-                                            });
-                                          }),
-                                    onTapUp: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : (_) {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = _popUpButtonKey
-                                                  .currentState!.mounted;
-                                            });
-                                          },
-                                    onTapCancel: widget.isDisabled
+                                    color: dropdownColor,
+                                    tooltip: widget.buttonText.toString(),
+                                    key: _popUpButtonKey,
+                                    enabled: isTapped,
+                                    splashRadius: 0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          dropDownBorderRadius!),
+                                      side: BorderSide(
+                                        color: dropDownBorderColor!,
+                                      ),
+                                    ),
+                                    position: widget.position,
+                                    itemBuilder: widget.itemBuilder,
+                                    offset: widget.offset,
+                                    onCanceled: widget.isDisabled
                                         ? null
                                         : () {
+                                            widget.onCanceled;
                                             setState(() {
                                               isTapped = false;
                                               isOpen = false;
                                             });
                                           },
-                                    child: IntrinsicWidth(
-                                      stepWidth: width(),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
+                                    onSelected: widget.isDisabled
+                                        ? null
+                                        : ((value) {
+                                            widget.onSelected != null
+                                                ? widget.onSelected!(value)
+                                                : null;
+                                            setState(() {
+                                              isTapped = false;
+                                              isOpen = false;
+                                            });
+                                          }),
+                                    child: GestureDetector(
+                                      onTap: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : (() {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = true;
+                                              });
+                                              _popUpButtonKey.currentState!
+                                                  .showButtonMenu();
+                                            }),
+                                      onTapDown: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : ((_) {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = false;
+                                              });
+                                            }),
+                                      onTapUp: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : (_) {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = _popUpButtonKey
+                                                    .currentState!.mounted;
+                                              });
+                                            },
+                                      onTapCancel: widget.isDisabled
+                                          ? null
+                                          : () {
+                                              setState(() {
+                                                isTapped = false;
+                                                isOpen = false;
+                                              });
+                                            },
+                                      child: IntrinsicWidth(
+                                        stepWidth: width(),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              top: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              left: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              right: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              bottom: BorderSide(
+                                                width: (isOpen) ? 2.0 : 1.0,
+                                                color: borderColor()!,
+                                              ),
                                             ),
-                                            left: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
-                                            ),
-                                            right: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
-                                            ),
-                                            bottom: BorderSide(
-                                              width: (isOpen) ? 2.0 : 1.0,
-                                              color: borderColor()!,
-                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                borderRadius),
                                           ),
-                                          borderRadius: BorderRadius.circular(
-                                              borderRadius),
-                                        ),
-                                        constraints: BoxConstraints(
-                                          minHeight: buttonHeight!,
-                                          maxWidth: buttonWidth ??
-                                              MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  widget.mainAxisAlignment ??
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                  child: widget.buttonText !=
-                                                          null
-                                                      ? ExcludeSemantics(
-                                                          excluding: true,
-                                                          child:
-                                                              widget.buttonText,
-                                                        )
-                                                      : Text(
-                                                          "Option",
-                                                          semanticsLabel: widget
-                                                              .semanticsLabel,
-                                                          style: labelTextStyle!
-                                                              .copyWith(
-                                                            color:
-                                                                buttonTextColor(),
+                                          constraints: BoxConstraints(
+                                            minHeight: buttonHeight!,
+                                            maxWidth: buttonWidth ??
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                          ),
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    widget.mainAxisAlignment ??
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                children: [
+                                                  Flexible(
+                                                    child: widget.buttonText !=
+                                                            null
+                                                        ? ExcludeSemantics(
+                                                            excluding: true,
+                                                            child: widget
+                                                                .buttonText,
+                                                          )
+                                                        : Text(
+                                                            "Option",
+                                                            semanticsLabel: widget
+                                                                .semanticsLabel,
+                                                            style:
+                                                                labelTextStyle!
+                                                                    .copyWith(
+                                                              color:
+                                                                  buttonTextColor(),
+                                                            ),
+                                                            maxLines: 3,
                                                           ),
-                                                          maxLines: 3,
-                                                        ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    horizontal: 10,
                                                   ),
-                                                  child: RotatedBox(
-                                                    quarterTurns:
-                                                        !isOpen ? 0 : 2,
-                                                    child: VIcon(
-                                                      svgIcon: VIcons
-                                                          .chevronDownTiny,
-                                                      iconWidth: 16,
-                                                      iconHeight: 16,
-                                                      iconColor: iconColor(),
-                                                      iconFit: BoxFit.none,
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                      horizontal: 10,
+                                                    ),
+                                                    child: RotatedBox(
+                                                      quarterTurns:
+                                                          !isOpen ? 0 : 2,
+                                                      child: VIcon(
+                                                        svgIcon: VIcons
+                                                            .chevronDownTiny,
+                                                        iconWidth: 16,
+                                                        iconHeight: 16,
+                                                        iconColor: iconColor(),
+                                                        iconFit: BoxFit.none,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                if (isTapped)
-                                  Divider(
-                                    thickness: 2,
-                                    height: 0,
-                                    color: bottomBar(),
-                                  ),
-                              ],
+                                  if (isTapped)
+                                    Divider(
+                                      thickness: 2,
+                                      height: 0,
+                                      color: bottomBar(),
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    // if (widget.showErrorMessage /*|| widget.validate*/)
-                    Visibility(
-                      visible: widget.showErrorMessage,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Visibility(
-                              visible: widget.showErrorIcon,
-                              child: VIcon(
-                                svgIcon: VIcons.errorTiny,
-                                iconHeight: 18,
-                                iconWidth: 18,
-                                iconColor: widget.validate
-                                    ? errorIconColor
-                                    : textLabelColor(),
-                              ),
-                            ),
-                            SizedBox(
-                              width: widget.showErrorIcon ? 5 : 0,
-                            ),
-                            Flexible(
-                              child: Text(
-                                widget.validateText,
-                                style: validateTextStyle!.copyWith(
-                                  color:
-                                      widget.validate && widget.showErrorMessage
-                                          ? validateTextColor
-                                          : textLabelColor(),
+                      // if (widget.showErrorMessage /*|| widget.validate*/)
+                      Visibility(
+                        visible: widget.showErrorMessage,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Visibility(
+                                visible: widget.showErrorIcon,
+                                child: VIcon(
+                                  svgIcon: VIcons.errorTiny,
+                                  iconHeight: 18,
+                                  iconWidth: 18,
+                                  iconColor: widget.validate
+                                      ? errorIconColor
+                                      : textLabelColor(),
                                 ),
-                                maxLines: 3,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: widget.showErrorIcon ? 5 : 0,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  widget.validateText,
+                                  style: validateTextStyle!.copyWith(
+                                    color: widget.validate &&
+                                            widget.showErrorMessage
+                                        ? validateTextColor
+                                        : textLabelColor(),
+                                  ),
+                                  maxLines: 3,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    widget.inLineMessage ?? const SizedBox()
-                  ],
+                      widget.inLineMessage ?? const SizedBox()
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         : SizedBox(
             width: width(),
@@ -606,9 +612,9 @@ class _VSelectState extends State<VSelect> {
                               () {
                                 SemanticsService.announce(
                                   (widget.isDisabled
-                                      ? "Collapsed. ${widget.headerLabel}.${widget.buttonText}. popup disabled"
+                                      ? "Collapsed. popup disabled"
                                       : widget.semanticReadout ??
-                                          "Collapsed. ${widget.headerLabel}.${widget.buttonText}. popup button. double tap to activate"),
+                                          "Collapsed. popup button. double tap to activate"),
                                   TextDirection.ltr,
                                 );
                               },
@@ -619,177 +625,182 @@ class _VSelectState extends State<VSelect> {
                           borderRadius:
                               BorderRadius.all(Radius.circular(borderRadius!)),
                           child: IntrinsicWidth(
-                            child: Column(
-                              children: [
-                                PopupMenuButton(
-                                  constraints: BoxConstraints(
-                                    minWidth: width(),
-                                  ),
-                                  color: dropdownColor,
-                                  elevation: dropDownElevation,
-                                  tooltip: widget.buttonText.toString(),
-                                  key: _popUpButtonKey,
-                                  enabled: isTapped,
-                                  splashRadius: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        dropDownBorderRadius!),
-                                    side: BorderSide(
-                                      color: dropDownBorderColor!,
+                            child: Container(
+                              color: backgroundColor,
+                              child: Column(
+                                children: [
+                                  PopupMenuButton(
+                                    constraints: BoxConstraints(
+                                      minWidth: width(),
                                     ),
-                                  ),
-                                  position: widget.position,
-                                  itemBuilder: widget.itemBuilder,
-                                  offset: widget.offset,
-                                  onCanceled: widget.isDisabled
-                                      ? null
-                                      : () {
-                                          widget.onCanceled;
-                                          setState(() {
-                                            isTapped = false;
-                                            isOpen = false;
-                                          });
-                                        },
-                                  onSelected: widget.isDisabled
-                                      ? null
-                                      : ((value) {
-                                          widget.onSelected != null
-                                              ? widget.onSelected!(value)
-                                              : null;
-                                          setState(() {
-                                            isTapped = false;
-                                            isOpen = false;
-                                          });
-                                        }),
-                                  child: GestureDetector(
-                                    onTap: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : (() {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = true;
-                                            });
-                                            _popUpButtonKey.currentState!
-                                                .showButtonMenu();
-                                          }),
-                                    onTapDown: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : ((_) {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = false;
-                                            });
-                                          }),
-                                    onTapUp: widget.isDisabled ||
-                                            widget.isReadOnly == true
-                                        ? null
-                                        : (_) {
-                                            setState(() {
-                                              isTapped = true;
-                                              isOpen = _popUpButtonKey
-                                                  .currentState!.mounted;
-                                            });
-                                          },
-                                    onTapCancel: widget.isDisabled
+                                    color: dropdownColor,
+                                    elevation: dropDownElevation,
+                                    tooltip: widget.buttonText.toString(),
+                                    key: _popUpButtonKey,
+                                    enabled: isTapped,
+                                    splashRadius: 0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          dropDownBorderRadius!),
+                                      side: BorderSide(
+                                        color: dropDownBorderColor!,
+                                      ),
+                                    ),
+                                    position: widget.position,
+                                    itemBuilder: widget.itemBuilder,
+                                    offset: widget.offset,
+                                    onCanceled: widget.isDisabled
                                         ? null
                                         : () {
+                                            widget.onCanceled;
                                             setState(() {
                                               isTapped = false;
                                               isOpen = false;
                                             });
                                           },
-                                    child: IntrinsicWidth(
-                                      stepWidth: width(),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
+                                    onSelected: widget.isDisabled
+                                        ? null
+                                        : ((value) {
+                                            widget.onSelected != null
+                                                ? widget.onSelected!(value)
+                                                : null;
+                                            setState(() {
+                                              isTapped = false;
+                                              isOpen = false;
+                                            });
+                                          }),
+                                    child: GestureDetector(
+                                      onTap: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : (() {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = true;
+                                              });
+                                              _popUpButtonKey.currentState!
+                                                  .showButtonMenu();
+                                            }),
+                                      onTapDown: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : ((_) {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = false;
+                                              });
+                                            }),
+                                      onTapUp: widget.isDisabled ||
+                                              widget.isReadOnly == true
+                                          ? null
+                                          : (_) {
+                                              setState(() {
+                                                isTapped = true;
+                                                isOpen = _popUpButtonKey
+                                                    .currentState!.mounted;
+                                              });
+                                            },
+                                      onTapCancel: widget.isDisabled
+                                          ? null
+                                          : () {
+                                              setState(() {
+                                                isTapped = false;
+                                                isOpen = false;
+                                              });
+                                            },
+                                      child: IntrinsicWidth(
+                                        stepWidth: width(),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              top: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              left: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              right: BorderSide(
+                                                width: 1.0,
+                                                color: borderColor()!,
+                                              ),
+                                              bottom: BorderSide(
+                                                width: (isOpen) ? 2.0 : 1.0,
+                                                color: borderColor()!,
+                                              ),
                                             ),
-                                            left: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
-                                            ),
-                                            right: BorderSide(
-                                              width: 1.0,
-                                              color: borderColor()!,
-                                            ),
-                                            bottom: BorderSide(
-                                              width: (isOpen) ? 2.0 : 1.0,
-                                              color: borderColor()!,
-                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                borderRadius),
                                           ),
-                                          borderRadius: BorderRadius.circular(
-                                              borderRadius),
-                                        ),
-                                        constraints: BoxConstraints(
-                                          minHeight: buttonHeight!,
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  widget.mainAxisAlignment ??
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                  child: widget.buttonText !=
-                                                          null
-                                                      ? ExcludeSemantics(
-                                                          excluding: true,
-                                                          child:
-                                                              widget.buttonText,
-                                                        )
-                                                      : Text(
-                                                          "Option",
-                                                          semanticsLabel: widget
-                                                              .semanticsLabel,
-                                                          style: labelTextStyle!
-                                                              .copyWith(
-                                                            color:
-                                                                buttonTextColor(),
+                                          constraints: BoxConstraints(
+                                            minHeight: buttonHeight!,
+                                          ),
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    widget.mainAxisAlignment ??
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                children: [
+                                                  Flexible(
+                                                    child: widget.buttonText !=
+                                                            null
+                                                        ? ExcludeSemantics(
+                                                            excluding: true,
+                                                            child: widget
+                                                                .buttonText,
+                                                          )
+                                                        : Text(
+                                                            "Option",
+                                                            semanticsLabel: widget
+                                                                .semanticsLabel,
+                                                            style:
+                                                                labelTextStyle!
+                                                                    .copyWith(
+                                                              color:
+                                                                  buttonTextColor(),
+                                                            ),
                                                           ),
-                                                        ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 10),
-                                                  child: RotatedBox(
-                                                    quarterTurns:
-                                                        !isOpen ? 0 : 2,
-                                                    child: VIcon(
-                                                      svgIcon: VIcons
-                                                          .chevronDownTiny,
-                                                      iconWidth: 16,
-                                                      iconHeight: 16,
-                                                      iconColor: iconColor(),
-                                                      iconFit: BoxFit.none,
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                      horizontal: 10,
+                                                    ),
+                                                    child: RotatedBox(
+                                                      quarterTurns:
+                                                          !isOpen ? 0 : 2,
+                                                      child: VIcon(
+                                                        svgIcon: VIcons
+                                                            .chevronDownTiny,
+                                                        iconWidth: 16,
+                                                        iconHeight: 16,
+                                                        iconColor: iconColor(),
+                                                        iconFit: BoxFit.none,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                if (isTapped)
-                                  Divider(
-                                    thickness: 2,
-                                    height: 0,
-                                    color: bottomBar(),
-                                  ),
-                              ],
+                                  if (isTapped)
+                                    Divider(
+                                      thickness: 2,
+                                      height: 0,
+                                      color: bottomBar(),
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

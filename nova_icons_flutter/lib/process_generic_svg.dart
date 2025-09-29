@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
 import 'dart:io';
 
 void main() {
-  final dir = Directory('visa_nova_icons_generic/');
+  final dir = Directory('Generic/');
 
   final files = dir.listSync().where((file) => file.path.endsWith('.svg'));
 
@@ -54,7 +54,11 @@ void main() {
       suffix = 'High';
     }
 
-    final content = File(file.path).readAsStringSync().replaceAll('\n', '');
+    final fullContent = File(file.path).readAsStringSync();
+    // Skip the first 16 lines (license header)
+    final lines = fullContent.split('\n');
+    final contentWithoutLicense = lines.length > 16 ? lines.skip(16).join('\n') : fullContent;
+    final content = contentWithoutLicense.replaceAll('\n', '');
 
     output.writeln('static const $camelCaseName$suffix = \'$content\';');
   }

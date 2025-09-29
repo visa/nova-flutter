@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -146,9 +146,8 @@ class VDef extends VExt {
         ),
         vToggleProperties: VToggleProperties(),
         vWizardProperties: VWizardProperties(
-          numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+          numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
             color: VColors.defaultSurface1,
-            fontSize: 12,
             fontWeight: VFontWeight.medium,
           ),
         ),
@@ -301,9 +300,8 @@ class VDef extends VExt {
         ),
         vToggleProperties: VToggleProperties(),
         vWizardProperties: VWizardProperties(
-          numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+          numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
             color: VColors.defaultSurface1,
-            fontSize: 12,
             fontWeight: VFontWeight.medium,
           ),
         ),
@@ -454,9 +452,8 @@ class VDef extends VExt {
     ),
     vToggleProperties: VToggleProperties(),
     vWizardProperties: VWizardProperties(
-      numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+      numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
         color: VColors.defaultSurface1,
-        fontSize: 12,
         fontWeight: VFontWeight.medium,
       ),
     ),
@@ -560,9 +557,8 @@ class VDef extends VExt {
     ),
     vToggleProperties: VToggleProperties(),
     vWizardProperties: VWizardProperties(
-      numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+      numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
         color: VColors.defaultSurface1,
-        fontSize: 12,
         fontWeight: VFontWeight.medium,
       ),
     ),
@@ -668,9 +664,8 @@ class VAlt extends VExt {
     ),
     vToggleProperties: VToggleProperties(),
     vWizardProperties: VWizardProperties(
-      numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+      numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
         color: VColors.defaultSurface1,
-        fontSize: 12,
         fontWeight: VFontWeight.medium,
       ),
     ),
@@ -774,9 +769,8 @@ class VAlt extends VExt {
     ),
     vToggleProperties: VToggleProperties(),
     vWizardProperties: VWizardProperties(
-      numberTextStyle: defaultVTheme.textStyles.uiLabelSmall.copyWith(
+      numberTextStyle: defaultVTheme.textStyles.uiLabelActive.copyWith(
         color: VColors.defaultSurface1,
-        fontSize: 12,
         fontWeight: VFontWeight.medium,
       ),
     ),

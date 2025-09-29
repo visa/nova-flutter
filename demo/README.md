@@ -16,59 +16,19 @@
  *
  *
  -->
-
 # demo
 
-This is a demo Flutter app for showcasing the [`visa_nova_flutter`](https://github.com/visa/nova-flutter) design system library.
+A new Flutter project.
 
-## 🚀 Getting Started
+## Getting Started
 
-This project serves as a runnable Flutter application for Android, iOS, and other platforms.
+This project is a starting point for a Flutter application.
 
-If you just cloned this repo and want to run the demo app, follow these steps:
+A few resources to get you started if this is your first Flutter project:
 
-### 1. Navigate to the demo folder
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-```bash
-cd demo
-```
-
-### 2. Initialize platform folders (Android, iOS, web, etc.)
-
-```bash
-flutter create .
-```
-
-This will generate missing platform directories like `android/`, `ios/`, and `web/` in the current directory.
-
-### 3. Install dependencies
-
-```bash
-flutter pub get
-```
-
-### 4. Run the app on a connected device or emulator
-
-```bash
-flutter run
-```
-
-Make sure you have a device or simulator running. You can check available devices with:
-
-```bash
-flutter devices
-```
-
----
-
-## 📚 Resources
-
-- [Flutter: Write your first app](https://flutter.dev/docs/get-started/codelab)
-- [Flutter Cookbook](https://flutter.dev/docs/cookbook)
-- [Flutter Documentation](https://flutter.dev/docs)
-
----
-
-For issues or contributions to the design system, visit:  
-➡️ [`visa_nova_flutter`](https://github.com/visa/nova-flutter)
-➡️ [`Visa Design System`](https://design.visa.com)
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

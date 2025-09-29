@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 //
 //
 import 'package:demo/patterns/application_layout.dart';
-import 'package:demo/patterns/chats.dart';
+import 'package:demo/patterns/chat_pattern/chat_landing.dart';
 import 'package:demo/patterns/file_upload.dart';
 import 'package:demo/patterns/wizard.dart';
 import 'package:demo/ui/accordion/accordion.dart';
@@ -76,6 +76,17 @@ class SemanticsSwitch extends ChangeNotifier {
 
   void toggle() {
     _isOn = !_isOn;
+    notifyListeners();
+  }
+}
+
+class ExpandedScreenState with ChangeNotifier {
+  bool _isExpanded = false;
+
+  bool get isExpanded => _isExpanded;
+
+  void toggleExpanded() {
+    _isExpanded = !_isExpanded;
     notifyListeners();
   }
 }
@@ -380,9 +391,9 @@ class MyApp extends StatelessWidget {
       "Application layouts are the basic building blocks of a mobile application.",
     ),
     Page(
-      "Chats",
+      "Chat",
       "chats",
-      const ChatsPage(),
+      const ChatLandingPage(),
       "Chat is a real-time communication tool that allows users to send and receive messages instantly.",
     ),
     Page(
@@ -405,8 +416,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => /*kIsWeb ?*/
             GettingStarted(), // : const FlutterComponents(),
-        for (var page in pages) "/" + page.path: (context) => page.page,
-        for (var page in patternPages) "/" + page.path: (context) => page.page,
+        for (var page in pages) "/${page.path}": (context) => page.page,
+        for (var page in patternPages) "/${page.path}": (context) => page.page,
       },
     );
   }
@@ -612,9 +623,9 @@ class _MyDrawerState extends State<MyDrawer> {
       "Application layouts are the basic building blocks of a mobile application.",
     ),
     Page(
-      "Chats",
+      "Chat",
       "chats",
-      const ChatsPage(),
+      const ChatLandingPage(),
       "Chat is a real-time communication tool that allows users to send and receive messages instantly.",
     ),
     Page(
@@ -655,212 +666,210 @@ class _MyDrawerState extends State<MyDrawer> {
     }
 
     return Drawer(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: kIsWeb ? 0 : 40,
-          ),
-          Semantics(
-            label: "Close",
-            child: SizedBox(
-              height: 60,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: IconButton(
-                    icon: const VIcon(
-                      svgIcon: VIcons.closeLow,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: kIsWeb ? 0 : 40,
+            ),
+            Semantics(
+              label: "Close",
+              child: SizedBox(
+                height: 60,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      icon: const VIcon(
+                        svgIcon: VIcons.closeLow,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Close the drawer
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the drawer
-                    },
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListTile(
-              title: Text(
-                "Getting started",
-                style: defaultVTheme.textStyles.baseTextStyle,
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListTile(
+                title: Text(
+                  "Getting started",
+                  style: defaultVTheme.textStyles.baseTextStyle,
+                ),
+                tileColor: widget.pageTitle.toLowerCase() ==
+                        "Getting started".toLowerCase()
+                    ? VColors.defaultSurfaceLowlight
+                    : VColors.transparent,
+                onTap: widget.pageTitle.toLowerCase() ==
+                        "Getting started".toLowerCase()
+                    ? null
+                    : () {
+                        Navigator.canPop(context)
+                            ? Navigator.pop(context)
+                            : null;
+                        Navigator.of(context).pushReplacementNamed("/");
+                      },
               ),
-              tileColor: widget.pageTitle.toLowerCase() ==
-                      "Getting started".toLowerCase()
-                  ? VColors.defaultSurfaceLowlight
-                  : VColors.transparent,
-              onTap: widget.pageTitle.toLowerCase() ==
-                      "Getting started".toLowerCase()
-                  ? null
-                  : () {
-                      Navigator.canPop(context) ? Navigator.pop(context) : null;
-                      Navigator.of(context).pushReplacementNamed("/");
-                    },
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListTile(
-              title: Text(
-                "Typography",
-                style: defaultVTheme.textStyles.baseTextStyle,
-              ),
-              tileColor:
-                  widget.pageTitle.toLowerCase() == "Typography".toLowerCase()
-                      ? VColors.defaultSurfaceLowlight
-                      : VColors.transparent,
-              onTap: () {
-                Navigator.canPop(context) ? Navigator.pop(context) : null;
-                Navigator.of(context).pushReplacementNamed("/typography");
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListTile(
-              title: Text(
-                'Device Theme: ' +
-                    (Provider.of<ThemeProvider>(context).themeMode ==
-                            ThemeMode.dark
-                        ? 'Dark'
-                        : Provider.of<ThemeProvider>(context).themeMode ==
-                                ThemeMode.light
-                            ? 'Light'
-                            : 'System'),
-                style: defaultVTheme.textStyles.baseTextStyle,
-              ),
-              trailing: Icon(themeIcon),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return ThemeSelectionDialog();
-                  },
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListTile(
-              title: Text(
-                'VPDS Theme: ' +
-                    (Provider.of<ThemeProvider>(context).isDefaultLightTheme
-                        ? 'Light'
-                        : 'Dark'),
-                style: defaultVTheme.textStyles.baseTextStyle,
-              ),
-              trailing: VSwitch(
-                switchValue:
-                    Provider.of<ThemeProvider>(context).isDefaultLightTheme,
-                onPressed: () {
-                  if (Provider.of<ThemeProvider>(context, listen: false)
-                      .isDefaultDarkTheme) {
-                    Provider.of<ThemeProvider>(context, listen: false)
-                        .switchLightTheme();
-                  } else {
-                    Provider.of<ThemeProvider>(context, listen: false)
-                        .switchDarkTheme();
-                  }
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListTile(
+                title: Text(
+                  "Typography",
+                  style: defaultVTheme.textStyles.baseTextStyle,
+                ),
+                tileColor:
+                    widget.pageTitle.toLowerCase() == "Typography".toLowerCase()
+                        ? VColors.defaultSurfaceLowlight
+                        : VColors.transparent,
+                onTap: () {
+                  Navigator.canPop(context) ? Navigator.pop(context) : null;
+                  Navigator.of(context).pushReplacementNamed("/typography");
                 },
               ),
             ),
-          ),
-          Center(
-            child: Padding(
+            Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(
-                "Version $versionNumber",
-                style: defaultVTheme.textStyles.baseTextStyle.copyWith(
-                  fontSize: 15,
+              child: ListTile(
+                title: Text(
+                  'Device Theme: ' +
+                      (Provider.of<ThemeProvider>(context).themeMode ==
+                              ThemeMode.dark
+                          ? 'Dark'
+                          : Provider.of<ThemeProvider>(context).themeMode ==
+                                  ThemeMode.light
+                              ? 'Light'
+                              : 'System'),
+                  style: defaultVTheme.textStyles.baseTextStyle,
                 ),
-                textAlign: TextAlign.center,
+                trailing: Icon(themeIcon),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ThemeSelectionDialog();
+                    },
+                  );
+                },
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: VDivider(
-              dividerType: VDividerType.decorative,
-            ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  VAccordion(
-                    title: "Patterns",
-                    body: Column(
-                      children: patternPages.map((page) {
-                        return VListItem(
-                          child: Text(
-                            page.title,
-                            style: widget.pageTitle.toLowerCase() ==
-                                    page.title.toLowerCase()
-                                ? defaultVTheme.textStyles.bodyText2Medium
-                                : defaultVTheme.textStyles.baseTextStyle,
-                          ),
-                          hasTrailingIcon: true,
-                          style: VListItemStyle(
-                            itemListColor:
-                                widget.pageTitle.toLowerCase().contains(
-                                          page.title.toLowerCase(),
-                                        )
-                                    ? VColors.defaultSurfaceLowlight
-                                    : VColors.transparent,
-                          ),
-                          onTap: () {
-                            Navigator.canPop(context)
-                                ? Navigator.pop(context)
-                                : null;
-                            route = page.path;
-                            Navigator.of(context)
-                                .pushReplacementNamed("/$route");
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  VAccordion(
-                    title: "Components",
-                    body: Column(
-                      children: pages.map((page) {
-                        return VListItem(
-                          child: Text(
-                            page.title,
-                            style: widget.pageTitle.toLowerCase() ==
-                                    page.title.toLowerCase()
-                                ? defaultVTheme.textStyles.bodyText2Medium
-                                : defaultVTheme.textStyles.baseTextStyle,
-                          ),
-                          hasTrailingIcon: true,
-                          style: VListItemStyle(
-                            itemListColor:
-                                widget.pageTitle.toLowerCase().contains(
-                                          page.title.toLowerCase(),
-                                        )
-                                    ? VColors.defaultSurfaceLowlight
-                                    : VColors.transparent,
-                          ),
-                          onTap: () {
-                            Navigator.canPop(context)
-                                ? Navigator.pop(context)
-                                : null;
-                            route = page.path;
-                            Navigator.of(context)
-                                .pushReplacementNamed("/$route");
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListTile(
+                title: Text(
+                  'VPDS Theme: ' +
+                      (Provider.of<ThemeProvider>(context).isDefaultLightTheme
+                          ? 'Light'
+                          : 'Dark'),
+                  style: defaultVTheme.textStyles.baseTextStyle,
+                ),
+                trailing: VSwitch(
+                  switchValue:
+                      Provider.of<ThemeProvider>(context).isDefaultLightTheme,
+                  onPressed: () {
+                    if (Provider.of<ThemeProvider>(context, listen: false)
+                        .isDefaultDarkTheme) {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .switchLightTheme();
+                    } else {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .switchDarkTheme();
+                    }
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  "Version $versionNumber",
+                  style: defaultVTheme.textStyles.baseTextStyle.copyWith(
+                    fontSize: 15,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: VDivider(
+                dividerType: VDividerType.decorative,
+              ),
+            ),
+            Column(
+              children: [
+                VAccordion(
+                  title: "Patterns",
+                  body: Column(
+                    children: patternPages.map((page) {
+                      return VListItem(
+                        child: Text(
+                          page.title,
+                          style: widget.pageTitle.toLowerCase() ==
+                                  page.title.toLowerCase()
+                              ? defaultVTheme.textStyles.bodyText2Medium
+                              : defaultVTheme.textStyles.baseTextStyle,
+                        ),
+                        hasTrailingIcon: true,
+                        style: VListItemStyle(
+                          itemListColor:
+                              widget.pageTitle.toLowerCase().contains(
+                                        page.title.toLowerCase(),
+                                      )
+                                  ? VColors.defaultSurfaceLowlight
+                                  : VColors.transparent,
+                        ),
+                        onTap: () {
+                          Navigator.canPop(context)
+                              ? Navigator.pop(context)
+                              : null;
+                          route = page.path;
+                          Navigator.of(context).pushReplacementNamed("/$route");
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+                VAccordion(
+                  title: "Components",
+                  body: Column(
+                    children: pages.map((page) {
+                      return VListItem(
+                        child: Text(
+                          page.title,
+                          style: widget.pageTitle.toLowerCase() ==
+                                  page.title.toLowerCase()
+                              ? defaultVTheme.textStyles.bodyText2Medium
+                              : defaultVTheme.textStyles.baseTextStyle,
+                        ),
+                        hasTrailingIcon: true,
+                        style: VListItemStyle(
+                          itemListColor:
+                              widget.pageTitle.toLowerCase().contains(
+                                        page.title.toLowerCase(),
+                                      )
+                                  ? VColors.defaultSurfaceLowlight
+                                  : VColors.transparent,
+                        ),
+                        onTap: () {
+                          Navigator.canPop(context)
+                              ? Navigator.pop(context)
+                              : null;
+                          route = page.path;
+                          Navigator.of(context).pushReplacementNamed("/$route");
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -880,7 +889,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
 
-  CustomAppBar({
+  const CustomAppBar({
+    super.key,
     required this.globalKey,
     required this.title,
     this.bottom,
@@ -955,10 +965,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
 }
 
 class ThemeSelectionDialog extends StatelessWidget {
+  const ThemeSelectionDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Select Theme'),
+      title: const Text('Select Theme'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

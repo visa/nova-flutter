@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -210,7 +210,8 @@ class _VCheckboxTileState extends State<VCheckboxTile> {
                       widget.isChecked = value;
                     });
             },
-      contentPadding: EdgeInsets.zero,
+      // To meet the a11y requirement, minimum touch area is 48x48
+      contentPadding: EdgeInsets.symmetric(vertical: 4),
       overlayColor: MaterialStateColor.resolveWith((states) => overlayColor!),
       side: BorderSide(
           width: 2,

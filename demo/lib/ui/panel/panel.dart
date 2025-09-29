@@ -1,4 +1,4 @@
-// 
+//
 //              © 2025 Visa
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ class PanelPage extends StatelessWidget {
 
     setPageTitle('Panel', context);
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         ScaffoldMessenger.of(context).clearSnackBars();
       },
       child: Scaffold(
@@ -79,7 +79,8 @@ class PanelPage extends StatelessWidget {
                 const VDynamicScreenRoundRadiusPanelButton(),
                 smallHeight(),
                 const ShowCodeAccordion(
-                  codeSegment: CodeSegments.VDynamicScreenRoundRadiusPanelButton,
+                  codeSegment:
+                      CodeSegments.VDynamicScreenRoundRadiusPanelButton,
                   componentName: 'Panel',
                   exampleName: 'Full_Screen_Round_Corner_Panel',
                   copyLabel: "Open dynamic screen with round corner panel",
@@ -185,7 +186,8 @@ class VDynamicScreenRoundRadiusPanelButton extends StatelessWidget {
                   isFullScreen: true,
                   showShadow: false,
                   closeIconPadding: const EdgeInsets.fromLTRB(4, 4, 16, 4),
-                  style: const VPanelStyle(borderRadius: 30.0, backgroundColor: Colors.white),
+                  style: const VPanelStyle(
+                      borderRadius: 30.0, backgroundColor: Colors.white),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
